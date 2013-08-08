@@ -1008,5 +1008,46 @@
 // $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width "#{$topbar-breakpoint}")";
 
+// top bar custom
+.container {
+	text-align: center;
+}
+/* footer */
+
+#footer {
+  position: fixed;
+  left:0px;
+  bottom:0px;
+  height:3em;
+  width:100%;
+  margin-top: 5em;
+  padding-top: 0.5em;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+  background: pink;
+  a{
+  	color: #555;
+  	&:hover {
+  		color: #222;
+  	}
+  }
+  small{
+  	float: left;
+  }
+  ul {
+  	float: right;
+  	list-style: none;
+  	li {
+  		float: left;
+  		margin-left: 10px;
+  	}
+  }
+}
+/* IE 6 */
+* html #footer {
+   position:absolute;
+   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}
+
 
 @import 'foundation';
