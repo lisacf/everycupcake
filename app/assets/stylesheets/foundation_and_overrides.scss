@@ -1013,6 +1013,9 @@
 	text-align: center;
 }
 /* footer */
+.form {
+	text-align: left;
+}
 
 #footer {
   position: fixed;
@@ -1048,6 +1051,36 @@
    position:absolute;
    top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
 }
+
+/* miscellaneous */
+.main {
+	text-align:left;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  padding: 45px 45px;
+  background: lightyellow;
+}
+/* Shared Error Format */
+.error_explanation {
+  color: #f00;
+  ul {
+    list-style: decoration;
+    margin: 0 0 2em 2em;
+  }
+}
+.field_with_errors {
+  @extend .error;
+}
+/* NOTE NEEDS ADDITIONAL FORMATTING TO MAKE PRETTY*/
+.alert-error {
+	font-weight: bold;
+}
+
+
 
 
 @import 'foundation';
