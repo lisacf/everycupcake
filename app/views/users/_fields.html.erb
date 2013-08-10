@@ -1,0 +1,16 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= f.label :name, "Name" %>
+<%= f.text_field :name, placeholder: "your name here" %>
+
+<%= f.label :email %>
+<%= f.text_field :email, placeholder: "email address here" %>
+
+<%= f.label :screen_name %>
+<%= f.text_field :screen_name, placeholder: "enter your screen name here"%>
+
+<%= f.label :password %>
+<%= f.password_field :password %>
+
+<%= f.label :password_confirmation, "Confirm password" %>
+<%= f.password_field :password_confirmation %>

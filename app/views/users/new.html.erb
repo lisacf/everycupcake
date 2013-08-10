@@ -1,25 +1,13 @@
 <% provide :title, 'Sign up' %>
 <h1>Sign up</h1>
-<%= form_for @user do |f| %>
-<div class="form">
-		<div class="row">
-			<div class="large-6 large-offset-3 columns">
-				<%= render 'shared/error_messages', object: f.object %>
-				<%= f.label :name, "Name" %>
-				<%= f.text_field :name, placeholder: "your name here" %>
-				<%= f.label :email %>
-				<%= f.text_field :email, placeholder: "email address here" %>
-				<%= f.label :screen_name %>
-				<%= f.text_field :screen_name, placeholder: "enter your screen name here"%>
-				<%= f.label :password %>
-				<%= f.password_field :password %>
-				<%= f.label :password_confirmation, "Confirm password" %>
-				<%= f.password_field :password_confirmation %>
+	<%= form_for @user do |f| %>
+		<div class="form">
+			<div class="row">
+				<div class="large-6 large-offset-3 columns">
+					<%= render 'fields', f: f %>
+					<%= f.submit "Create my account", class: "button round" %>
+	<% end %>
+				</div>
 			</div>
 		</div>
-</div>
-
-		<%= f.submit "Create my account", class: "button round" %>
-		<% end %>
-
 
