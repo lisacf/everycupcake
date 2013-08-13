@@ -1,4 +1,5 @@
 Cupcake::Application.routes.draw do
+  get "google_maps/index"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup', to: 'users#new', via: 'get'
@@ -8,6 +9,8 @@ Cupcake::Application.routes.draw do
   match '/home', to: 'static_pages#home', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/map', to: 'google_maps#index', via: 'get'
+  match '/map', to: 'google_maps#index', via: 'post'
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

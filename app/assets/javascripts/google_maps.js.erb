@@ -1,0 +1,81 @@
+var map;
+var geocoder;
+var infowindow;
+
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(37.7749295, -122.41941550000001);
+  var mapOptions = {
+    zoom: 15,
+    center:latlng,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+    },
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var input = (document.getElementById('address'));
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  autocomplete.bindTo('bounds', map);
+
+}
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+    	var newListItem = $('<li>', {
+    		html: (results[i].name + '<br>' + results[i].vicinity)
+    	});
+      $("ul").append(newListItem);
+      createMarker(results[i]);
+    }
+  }
+}
+
+function createMarker(place) {
+  var image = "<%= asset_path 'minicupcake.png' %>";
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    title: place.name,
+    position: place.geometry.location,
+    icon: image
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent('<div><strong>'+ place.name + '</strong><br>' + place.vicinity + '</div>');
+    infowindow.open(map, this);
+  });
+}
+
+function codeAddress() {
+	var address = document.getElementById('address').value;
+	geocoder.geocode( {'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location
+			});
+      var request = {
+        location: results[0].geometry.location,
+        radius: 1000,
+        keyword: ['cupcake'],
+        type: ['food']
+      };
+      infowindow = new google.maps.InfoWindow();
+      rightcolumn = document.getElementById('right-side');
+      var service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, callback);
+
+		} else {
+			alert('Geocode was not successful for the following reason: ' + status);
+		}
+	});
+}
+$(document).on('click', 'load', initialize);
+$(document).ready(initialize);
+$(document).on('page:load', initialize);
+
