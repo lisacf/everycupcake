@@ -24,12 +24,15 @@ function initialize() {
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
+    //  remove current list items
+    $("ul").empty();
+
+    for (var j = 0; j < results.length; j++) {
     	var newListItem = $('<li>', {
-    		html: (results[i].name + '<br>' + results[i].vicinity)
+    		html: (results[j].name + '<br>' + results[j].vicinity)
     	});
       $("ul").append(newListItem);
-      createMarker(results[i]);
+      createMarker(results[j]);
     }
   }
 }
