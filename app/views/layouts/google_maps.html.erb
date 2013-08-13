@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<%= stylesheet_link_tag    "google_maps" %>
+<%= stylesheet_link_tag    "application" %>
+<%= stylesheet_link_tag params[:controller] %>
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
 <%= javascript_include_tag ENV["GOOGLE_MAPS"] %>
