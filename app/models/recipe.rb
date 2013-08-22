@@ -2,9 +2,10 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   has_many :proportions
   has_many :ingredients, through: :proportions
-  accepts_nested_attributes_for :proportions, allow_destroy: true
   has_many :instructions
+  accepts_nested_attributes_for :proportions, allow_destroy: true
   accepts_nested_attributes_for :instructions, allow_destroy: true
+  mount_uploader :image, ImageUploader
 
 
   validates :description, presence: true

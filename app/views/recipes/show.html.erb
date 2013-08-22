@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
-
+<% provide :title, @recipe.name %>
 <p>
   <h1><%= @recipe.name %></h1>
 </p>
+<%= image_tag @recipe.image_url(:thumb).to_s %>
 
 <p>
   <strong>Description:</strong>

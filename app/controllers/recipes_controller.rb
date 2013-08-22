@@ -56,7 +56,7 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :source, :user_id, :user_id, :cupcake_part,
+      params.require(:recipe).permit(:name, :description, :source, :user_id, :user_id, :cupcake_part, :image, :remote_image_url,
                                       proportions_attributes: [:_destroy, :id, :recipe_id, :ingredient_id, :measure_id, :unit_id],
                                       instructions_attributes: [:_destroy, :id, :recipe_id, :content, :preheat, :baketemp, :baketime, :preptime])
     end
