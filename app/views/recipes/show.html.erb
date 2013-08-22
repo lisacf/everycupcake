@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1><%= @recipe.name %></h1>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @recipe.source %>
+</p>
+<h2> Ingredients: </h2>
+<ul>
+<% @recipe.proportions.each do |item| %>
+<li>
+	<% if item.unit %>
+  	<%= item.unit.name %>
+  <% end %>
+  <%= item.measure.name %>
+  <%= item.ingredient.name %>
+</li>
+<% end %>
+</ul>
+<h2> Instructions: </h2>
+<ul>
+  <% @recipe.instructions.each do |instruction| %>
+    <li>Preheat oven to <%= instruction.preheat%> °F</li>
+    <li>Bake for <%= instruction.baketime %> minutes </li>
+    <li>Bake Temperature <%= instruction.baketemp%> °F</li>
+    <li><%= instruction.content %> </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>

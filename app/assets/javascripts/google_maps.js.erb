@@ -23,10 +23,8 @@ function initialize() {
 }
 
 function callback(results, status) {
+  $("ul").empty();
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    //  remove current list items
-    $("ul").empty();
-
     for (var j = 0; j < results.length; j++) {
     	var newListItem = $('<li>', {
     		html: (results[j].name + '<br>' + results[j].vicinity)
@@ -34,8 +32,13 @@ function callback(results, status) {
       $("ul").append(newListItem);
       createMarker(results[j]);
     }
+  } else {
+    var emptyList = $('<li>', {
+      html: "No Cupcake Shops Found <br> Please Try a Different Location"
+    });
+    $("ul").append(emptyList);
   }
-}
+};
 
 function createMarker(place) {
   var image = "<%= asset_path 'minicupcake.png' %>";

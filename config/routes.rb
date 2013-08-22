@@ -1,4 +1,12 @@
 Cupcake::Application.routes.draw do
+  resources :units
+
+  resources :measures
+
+  resources :ingredients
+
+  resources :recipes
+
   get "google_maps/index"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

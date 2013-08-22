@@ -10,4 +10,11 @@ FactoryGirl.define do
 			admin true
 		end
 	end
+
+	factory :recipe do
+		name "Chocolate cupcake"
+		description "yummy"
+		source "grandma's recipe"
+		user
+	end
 end

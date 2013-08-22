@@ -152,4 +152,23 @@ describe "User Pages" do
       specify { expect(user.reload).not_to be_admin }
     end
   end
+
+  describe "profile page" do
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:recipe1) { FactoryGirl.create(:recipe, user: user, name: "chocolate", 
+                                        description: "warm chocolate", source: "Bon Appetite") }
+    let!(:recipe2) { FactoryGirl.create(:recipe, user: user, name: "chocolate1", 
+                                        description: "warm chocolate", source: "Bon Appetite") }
+
+    before { visit user_path(user) }
+    subject { page }
+
+    it { should have_content(user.name) }
+    it { should have_title(user.name) }
+    it { should have_content(recipe1.name) }
+    it { should have_content(recipe1.description) }
+    it { should have_content(recipe1.source) }
+    it { should have_content(user.recipes.count) }
+    it { should have_selector('div.pagination') }
+  end
 end

@@ -1,0 +1,19 @@
+<fieldset>
+  <div id="bake_instructions">
+  <%= f.label :preheat, "Preheat Oven: "%>
+  <%= f.number_field :preheat, min: 250, max: 500, step: 5%>
+
+  <%= f.label :baketemp, "Bake Temperature: "%>
+  <%= f.number_field :baketemp, min: 250, max: 500, step: 5 %>
+
+  <%= f.label :baketime, "Bake Time: (in minutes)"%>
+  <%= f.number_field :baketime, min: 1, max: 45, step: 1, placeholder: 12, autocomplete: "on" %>
+  </div>
+
+  <%= f.label :preptime, "Prep Time" %>
+  <%= f.text_field :preptime %>
+
+  <%= f.label :content, "Step by Step Instructions"%>
+  <%= f.text_area :content %>
+
+</fieldset>

@@ -1,0 +1,15 @@
+<fieldset>
+	<div class="field">
+		<%= f.grouped_collection_select :unit_id, Measure.order(:name), :units, :name, :id, :name, {include_blank: true}, {class: 'measure_unit_id'} %>
+	</div>
+	<div class="field">
+		<%= f.collection_select :measure_id, Measure.all, :id, :name, {include_blank: true}, {class: 'measure_id'}%>
+	</div>
+	<div class="field">
+		<%= f.collection_select :ingredient_id, Ingredient.all, :id, :name, include_blank: true %>
+	</div>
+		<%= f.hidden_field :_destroy %>
+  	<%= link_to "remove", '#', class: "remove_fields" %>
+	<%#= f.check_box :_destroy %>
+	<%#= f.label :_destroy, "Remove Ingredient" %>
+</fieldset>
