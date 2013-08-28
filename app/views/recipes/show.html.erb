@@ -2,17 +2,7 @@
 <p>
   <h1><%= @recipe.name %></h1>
 </p>
-<%= image_tag @recipe.image_url(:thumb).to_s %>
-
-<p>
-  <strong>Description:</strong>
-  <%= @recipe.description %>
-</p>
-
-<p>
-  <strong>Source:</strong>
-  <%= @recipe.source %>
-</p>
+<%#= image_tag @recipe.image_url(:thumb).to_s %>
 <h2> Ingredients: </h2>
 <ul>
 <% @recipe.proportions.each do |item| %>

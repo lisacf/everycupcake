@@ -1,5 +1,6 @@
 <fieldset>
   <div id="bake_instructions">
+  <% if @cupcake_part == "cake" %>
   <%= f.label :preheat, "Preheat Oven: "%>
   <%= f.number_field :preheat, min: 250, max: 500, step: 5%>
 
@@ -8,6 +9,7 @@
 
   <%= f.label :baketime, "Bake Time: (in minutes)"%>
   <%= f.number_field :baketime, min: 1, max: 45, step: 1, placeholder: 12, autocomplete: "on" %>
+  <% end %>
   </div>
 
   <%= f.label :preptime, "Prep Time" %>

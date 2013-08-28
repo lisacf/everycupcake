@@ -1,0 +1,2 @@
+module MastercakesHelper
+end

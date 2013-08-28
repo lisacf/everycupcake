@@ -8,13 +8,10 @@
 		<h2> Name: <%= @user.name %> </h2>
 	</div>
 	<div class="large-6 offset-6 columns">
-		<% if @user.recipes.any? %>
-		<h3>Recipes (<%= @user.recipes.count %>)</h3>
-		<ol class="recipes">
-
-			<%= render @recipes %>
-		</ol>
-			<%= will_paginate @recipes %>
+		<% if @user.mastercakes.any? %>
+		<h3><%= pluralize @user.mastercakes.count, "Recipe" %></h3>
+			<%= render @mastercakes %>
+			<%= will_paginate @mastercakes%>
 		<% end %>
 	</div>
 </div>

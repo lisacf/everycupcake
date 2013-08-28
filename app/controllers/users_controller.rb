@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes.paginate(page: params[:page], :per_page => 1)
+    @mastercakes = @user.mastercakes.paginate(page: params[:page], :per_page => 1)
   end
 
   def destroy
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :screen_name, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:name, :email, :screen_name, :password, :password_confirmation, :admin, :recipe_ids, :mastercake_ids)
   end
 
   # Before filters

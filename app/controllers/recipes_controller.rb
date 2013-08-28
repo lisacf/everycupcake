@@ -10,7 +10,18 @@ class RecipesController < ApplicationController
   end
 
   def new
+  end
+  def cake
     @recipe = Recipe.new
+    @cupcake_part = "cake"
+  end
+  def filling
+    @recipe = Recipe.new
+    @cupcake_part = "filling"
+  end
+  def frosting
+    @recipe = Recipe.new
+    @cupcake_part = "frosting"
   end
 
   def edit
@@ -18,10 +29,11 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.update_attribute(:user_id, current_user.id)
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        format.html { redirect_to mastercake_path(@recipe.mastercakes.last), notice: 'Recipe was successfully created.' }
         format.json { render action: 'show', status: :created, location: @recipe }
       else
         format.html { render action: 'new' }
@@ -56,8 +68,9 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :source, :user_id, :user_id, :cupcake_part, :image, :remote_image_url,
-                                      proportions_attributes: [:_destroy, :id, :recipe_id, :ingredient_id, :measure_id, :unit_id],
-                                      instructions_attributes: [:_destroy, :id, :recipe_id, :content, :preheat, :baketemp, :baketime, :preptime])
+      params.require(:recipe).permit( :name, :user_id, :cupcake_part, :ingredient_tokens, :mastercake_ids,
+                                      proportions_attributes: [:_destroy, :id, :recipe_id, :ingredient_id, :measure_id, :unit_id, :ingredient_token],
+                                      instructions_attributes: [:_destroy, :id, :recipe_id, :content, :preheat, :baketemp, :baketime, :preptime],
+                                      ingredients_attributes: [:ingredient_tokens, :id, :name])
     end
 end

@@ -1,11 +1,16 @@
 Cupcake::Application.routes.draw do
+  resources :mastercakes
   resources :units
-
   resources :measures
-
   resources :ingredients
 
-  resources :recipes
+  resources :recipes do
+    collection do
+      get :cake
+      get :filling
+      get :frosting
+    end
+  end
 
   get "google_maps/index"
   resources :users

@@ -1,9 +1,16 @@
-<div class=row>
-	<h1>Editing recipe</h1>
-	<div class="large-9 offset-3 columns">
-		<%= render 'form' %>
-
+<% provide :title, 'Edit Recipe' %>
+<h1>Update <%= @recipe.name %></h1>
+	<%= form_for @recipe do |f| %>
+<div class="form">
+		<div class="row">
+			<div class="large-6 large-offset-3 columns">
+				<%= render 'shared/error_messages', object: f.object %>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+				<%= render 'form', object: f.object %>
+	<% end %>
 		<%= link_to 'Show', @recipe %> |
 		<%= link_to 'Back', recipes_path %>
+		</div>
 	</div>
 </div>

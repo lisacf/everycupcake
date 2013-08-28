@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822190458) do
+ActiveRecord::Schema.define(version: 20130826002942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cakecombos", force: true do |t|
+    t.integer  "recipe_id"
+    t.integer  "mastercake_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cakecombos", ["mastercake_id"], name: "index_cakecombos_on_mastercake_id", using: :btree
+  add_index "cakecombos", ["recipe_id"], name: "index_cakecombos_on_recipe_id", using: :btree
 
   create_table "ingredients", force: true do |t|
     t.string   "name"
@@ -34,6 +44,18 @@ ActiveRecord::Schema.define(version: 20130822190458) do
   end
 
   add_index "instructions", ["recipe_id"], name: "index_instructions_on_recipe_id", using: :btree
+
+  create_table "mastercakes", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "source"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+  end
+
+  add_index "mastercakes", ["user_id"], name: "index_mastercakes_on_user_id", using: :btree
 
   create_table "measures", force: true do |t|
     t.string   "name"
@@ -58,13 +80,10 @@ ActiveRecord::Schema.define(version: 20130822190458) do
 
   create_table "recipes", force: true do |t|
     t.string   "name"
-    t.string   "description"
-    t.string   "source"
     t.string   "cupcake_part"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
   end
 
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree

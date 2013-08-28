@@ -1,0 +1,14 @@
+<div class=row>
+  <div class="large-3">
+    <%#= @recipe.mastercake.name %>
+  </div>
+	<div class="large-9 offset-3 columns">
+		<h1>Frosting Formulator</h1>
+		<%= form_for @recipe do |f| %>
+      <%= f.label :name, "Frosting Name" %>
+      <%= f.text_field :name %>
+      <%= f.hidden_field :cupcake_part, value: "frosting" %>
+      <%= render "form", :object => @recipe %>
+    <% end %>
+	</div>
+</div>

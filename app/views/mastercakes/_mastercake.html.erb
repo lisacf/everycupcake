@@ -1,0 +1,22 @@
+<ul>
+  <% @mastercakes.each do |mastercake| %>
+    <li>
+      <ul>
+        <li>
+          <%= image_tag mastercake.image_url(:thumb).to_s %>
+        </li>
+        <li>
+          <%= link_to mastercake.name, mastercake %>
+        </li>
+        <li>
+          <%= mastercake.description %>
+        </li>
+        <li>
+          <%= mastercake.source %>
+        </li>
+        <li><%= link_to 'Edit', edit_mastercake_path(mastercake) %> | <%= link_to 'Destroy', mastercake, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </li>
+      </ul>
+    </li>  
+  <% end %>
+</ul>

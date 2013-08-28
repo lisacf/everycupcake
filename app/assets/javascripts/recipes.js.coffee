@@ -26,8 +26,14 @@ jQuery ->
 	  nameofunit = $(newdivunit).attr('id')
 	  measurename = nameofunit.replace(/unit/, "measure" )
 	  ingredientid = nameofunit.replace(/unit/, "ingredient")
+	  ingredienttokenid = nameofunit.replace(/unit\_id/, "ingredient\_token")
+	  console.log(ingredienttokenid)
 	  $("##{ingredientid}").attr("data-placeholder", "Select Ingredient").chosen()
 	  $("##{measurename}").attr("data-placeholder", "Choose a Unit Measure").chosen()
+	  $("##{ingredienttokenid}").tokenInput '/ingredients.json',
+			theme: 'facebook',
+			prePopulate: $('.recipe_ingredient_tokens').data('load'),
+			tokenLimit: 1
 	  measurediv = $(newdiv).find("##{measurename}")
 	  $(measurediv).addClass("measure_id")
 	  newdivunit.hide()
@@ -53,6 +59,12 @@ jQuery ->
 			else
 				$("#" + value.id).chosen()
 
+	$.each $('.inputtoken'), (key, value) ->
+		$("#" + value.id).tokenInput '/ingredients.json',
+			theme: 'facebook',
+			prePopulate: [$("#" + value.id).data('load')[key]],
+			tokenLimit: 1
+
 	$('.measure_id').change ->
 		selectedmeasure = $(this).attr('id')
 		selectedunitclass = selectedmeasure.replace(/measure/, "unit")
@@ -72,6 +84,8 @@ jQuery ->
 	  	$('#bake_instructions').hide()
 	  else
 	  	$('#bake_instructions').show()
+
+
  
     
 		

@@ -250,9 +250,4 @@ sticks.each do |item|
 end
 
 
-Recipe.create(user_id: 1, name: "chocolateII", description: "yummy cupcake II", source:"bakers secret")
-Recipe.create(user_id: 1, name: "vanilla", description: "so good", source:"bakers secret I")
-Recipe.create(user_id: 2, name: "maple", description: "moist cake with smooth frosting", source:"private")
-
-
 

@@ -1,41 +1,6 @@
-<%= form_for @recipe, :html => { :multipart => true } do |f| %>
+  <%= form_for object do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.label :name, "Cupcake Name" %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :source %><br>
-    <%= f.text_field :source %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  </div>
-  <div class="field">
-    <%= f.file_field :image %>
-    <%= f.label :remote_image_url, "or image url" %>
-    <%= f.text_field :remote_image_url %>
-  </div>
-  <div class="field">
-    <ul class="button-group even-3">
-      <li>
-        <%= f.label :cupcake_part_cake, "Cake", class: "medium button" %>
-        <%= f.radio_button :cupcake_part, "cake" %>
-      </li>
-      <li>
-        <%= f.label :cupcake_part_filling, "Filling", class: "medium button" %>
-        <%= f.radio_button :cupcake_part, "filling" %>
-      </li>
-      <li>
-        <%= f.label :cupcake_part_frosting, "Frosting", class: "medium button" %>
-        <%= f.radio_button :cupcake_part, "frosting" %>
-      </li>
-    </ul>
-  </div>
-
-
+      <%= f.hidden_field :mastercake_ids, value: params["mastercake_id"] %>
   <div class="field">
     <%= f.fields_for :proportions do |builder| %>
       <%= render 'ingredient_fields', f: builder %>
@@ -48,11 +13,9 @@
     <% end %>
     <%= link_to_add_fields "Add Instructions", f, :instructions, :instructions, "add_instructions medium button round" %>
   </div>
+    <div class="actions">
+      <%= f.submit "Submit Recipe", class: "medium button" %>
+    </div>
+  <% end %>
 
-  <%#= f.label :ingredient_tokens, "Ingredient" %>
-  <%#= f.text_field :ingredient_tokens, data: {load:@recipe.ingredients} %>
 
-  <div class="actions">
-    <%= f.submit "Submit Recipe", class: "medium button" %>
-  </div>
-<% end %>

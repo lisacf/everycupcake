@@ -1,0 +1,36 @@
+<h1>Every Cupcake Recipe</h1>
+<div class="row">
+  <div class="large-9 large-offset-2 columns">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Source</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @mastercakes.each do |mastercake| %>
+
+          <tr>
+            <td><%= image_tag mastercake.image_url(:thumb).to_s %></td>
+            <td><%= link_to mastercake.name, mastercake %></td>
+            <td><%= mastercake.description %></td>
+            <td><%= mastercake.source %></td>
+            <td><%= link_to 'Edit', edit_mastercake_path(mastercake) %></td>
+            <td><%= link_to 'Destroy', mastercake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Cupcake Recipe Builder', new_mastercake_path %>
+    </div>
+    </div>
+
+
+

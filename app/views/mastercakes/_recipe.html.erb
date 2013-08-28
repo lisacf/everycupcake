@@ -1,0 +1,32 @@
+<fieldset>
+  <h2><%= object.name %> <%= object.cupcake_part %> Recipe</h2>
+  <h2> Ingredients: </h2>
+  <ul>
+  <% object.proportions.each do |item| %>
+  <li>
+  	<% if item.unit %>
+    	<%= item.unit.name %>
+    <% end %>
+    <%= item.measure.name %>
+    <%= item.ingredient.name %>
+  </li>
+  <% end %>
+  </ul>
+  <h2> Instructions: </h2>
+  <ul>
+    <% object.instructions.each do |instruction| %>
+      <% if instruction.preheat %>
+      <li>Preheat oven to <%= instruction.preheat%> °F</li>
+      <% end %>
+      <% if instruction.baketime %>
+      <li>Bake for <%= instruction.baketime %> minutes </li>
+      <% end %>
+      <% if instruction.baketemp %>
+      <li>Bake Temperature <%= instruction.baketemp%> °F</li>
+      <% end %>
+      <li><%= instruction.content %> </li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Edit', edit_recipe_path(object) %>
+</fieldset>

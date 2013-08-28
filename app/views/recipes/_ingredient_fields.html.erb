@@ -6,10 +6,9 @@
 		<%= f.collection_select :measure_id, Measure.all, :id, :name, {include_blank: true}, {class: 'measure_id'}%>
 	</div>
 	<div class="field">
-		<%= f.collection_select :ingredient_id, Ingredient.all, :id, :name, include_blank: true %>
+		<%= f.label :ingredient_token, "Ingredient" %>
+ 	 	<%= f.text_field :ingredient_token, class: "inputtoken", data: {load:@recipe.ingredients} %>
 	</div>
 		<%= f.hidden_field :_destroy %>
   	<%= link_to "remove", '#', class: "remove_fields" %>
-	<%#= f.check_box :_destroy %>
-	<%#= f.label :_destroy, "Remove Ingredient" %>
 </fieldset>

@@ -1,0 +1,23 @@
+
+<h1>Every Cupcake</h1>
+<%= link_to 'Sign up now!', signup_path, class: "button small round"%>
+<div class="row">
+	<div class="large-9 small-9 columns">
+		<div class="panel">
+			<h4>Click on a photo to open the photo gallery</h4>
+			<ul class="clearing-thumbs clearing-feature" data-clearing>
+				<li class="clearing-featured-img">
+					<%= image_tag "/assets/cupcakes.jpg", height:150, class:'th' %>
+				</li>
+				<li>
+					<%= image_tag "/assets/pumpkincake.jpeg", height:150, class:'th' %>
+				</li>
+				<li>
+					<%= image_tag "/assets/mochacc.jpeg", height:150, class:'th' %>
+				</li>
+				<li>
+					<%= image_tag "/assets/chocolatecc.jpeg", height:150, class:'th' %>
+				</li>
+			</ul>
+		</div>
+</div>
