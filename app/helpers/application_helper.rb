@@ -16,4 +16,15 @@ module ApplicationHelper
 		end
 		link_to(name, '#', class: "#{htmlclass}", data: {id: id, fields: fields.gsub("\n", "")})
 	end
+
+	def render_stars(rating)
+		StarRenderer.new(rating, self).render_stars
+	end
+
+	def markdown(text)
+		redcarpetmarkdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, 
+			:autolink => true, :space_after_headers => true, :hard_wrap => true, :filter_html=>true, :highlight=> true,
+			:quote => true)
+		redcarpetmarkdown.render(text).html_safe
+	end
 end

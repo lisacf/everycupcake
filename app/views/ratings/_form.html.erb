@@ -1,0 +1,21 @@
+<%= form_for [@rateable, @rating] do |f| %>
+	<div class="row">
+		<div class="large-4 columns">
+			<fieldset class="ratings" >
+				<legend>Rate: </legend>
+						<%= f.radio_button :star, 5 %><%= f.label :star_5, '5 stars', title: "Rocks!" %>
+						<%= f.radio_button :star, 4 %><%= f.label :star_4, '4 stars', title: "Delicious" %>
+						<%= f.radio_button :star, 3 %><%= f.label :star_3, '3 stars', title: "Good" %>
+						<%= f.radio_button :star, 2 %><%= f.label :star_2, '2 stars', title: "Kinda bad" %>
+						<%= f.radio_button :star, 1 %><%= f.label :star_1, '1 star', title: "One was enough"%>
+			</fieldset>
+		</div>
+		<div class="large-6 columns">
+				<%= f.label :review %>
+				<%= f.text_area :review %>
+		</div>
+	</div>
+		<%= f.submit "Rate", id: "medium button" %>
+<% end %>
+		
+

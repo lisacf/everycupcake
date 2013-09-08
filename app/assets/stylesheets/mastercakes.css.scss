@@ -1,9 +1,9 @@
 // Place all the styles related to the mastercakes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.mastercake{
+.mastercake-show{
 	font-family: Cambria, Georgia, serif;
-	background: #aee0df;
+	background: #9deeeb;
 	font-weight: 300;
 	font-size: 15px;
 	color: #333;
@@ -23,7 +23,7 @@
 }
 
 .ch-grid {
-    margin: 20px 0 0 0;
+    margin: 0.5em 0 0 0;
     padding: 0;
     list-style: none;
     display: block;
@@ -75,7 +75,7 @@
 
 	top: 20px;
 	left: 20px;
-	background: #fff url(/images/pink.jpg);
+	background: #fff url(../assets/pink.jpg);
 	box-shadow: 
 		0 0 0 20px rgba(255,255,255,0.2), 
 		inset 0 0 3px rgba(115,114, 23, 0.8);
@@ -128,15 +128,15 @@
 }
 
 .ch-img-1 { 
-	background-image: url(/images/vanilla.jpg);
+	background-image: url(../assets/vanilla.jpg);
 }
 
 .ch-img-2 { 
-	background-image: url(/images/filling.jpg);
+	background-image: url(../assets/filling.jpg);
 }
 
 .ch-img-3 { 
-	background-image: url(/images/icing.jpg);
+	background-image: url(../assets/icing.jpg);
 }
 
 .ch-info a {

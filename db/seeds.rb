@@ -198,22 +198,11 @@ ingredients_list.each do |item|
 Ingredient.create(name: item)
 end
 
-measure_list = %w(pinch
-									teaspoon
-									tablespoon
-									cup
-									box
-									bag
-									pound
-									gram
-									fluid\ ounce
-									ounce
-									stick
-									dash
-									sprig
-									piece
-									ml
-)
+measure_list = ["none (1 egg)", "pinch", "teaspoon",
+								"tablespoon", "cup", "box", "bag", "pound",
+								"gram", "ounce", "stick", "dash", "sprig",
+								"piece", "ml"]
+
 
 measure_list.each do |measure|
 	Measure.create(name: measure)
@@ -225,6 +214,13 @@ teaspoon.each do |item|
 	teaspoonobject = Measure.find_by_name("teaspoon")
 	teaspoonobject.units.build(name: item)
 	teaspoonobject.save
+end
+egg = (1..12).to_a
+
+egg.each do |item|
+	eggobject = Measure.find_by_name("none (1 egg)")
+	eggobject.units.build(name: item)
+	eggobject.save
 end
 
 tablespoon = %w(1 2 3 4 5 6 7 8 16)
@@ -238,9 +234,13 @@ cup = %w(1/4 1/3 1/2 2/3 3/4 1 1\ 1/4 1\ 1/3 1\ 1/2 1\ 2/3 1\ 3/4 2 2\ 1/4 2\ 1/
 
 cup.each do |item|
 	cupobject = Measure.find_by_name("cup")
+	poundobject = Measure.find_by_name("pound")
 	cupobject.units.build(name: item)
 	cupobject.save
+	poundobject.units.build(name: item)
+	poundobject.save
 end
+
 
 sticks = %w(1/4 1/2 3/4 1 2 3 4 5 6)
 sticks.each do |item|
@@ -248,6 +248,15 @@ sticks.each do |item|
 	stickobject.units.build(name: item)
 	stickobject.save
 end
+
+ounces = (1..16).to_a
+
+ounces.each do |item|
+	ouncesobject = Measure.find_by_name("ounce")
+	ouncesobject.units.build(name: item)
+	ouncesobject.save
+end
+
 
 
 

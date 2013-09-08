@@ -1,36 +1,35 @@
-<h1>Every Cupcake Recipe</h1>
+<% provide :title, 'Recipes' %>
+<div class="purplebg-paper">
 <div class="row">
-  <div class="large-9 large-offset-2 columns">
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Source</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @mastercakes.each do |mastercake| %>
-
-          <tr>
-            <td><%= image_tag mastercake.image_url(:thumb).to_s %></td>
-            <td><%= link_to mastercake.name, mastercake %></td>
-            <td><%= mastercake.description %></td>
-            <td><%= mastercake.source %></td>
-            <td><%= link_to 'Edit', edit_mastercake_path(mastercake) %></td>
-            <td><%= link_to 'Destroy', mastercake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= link_to 'Cupcake Recipe Builder', new_mastercake_path %>
+  <div class="small-11 small-offset-1 large-8 columns">
+    <div class="non-semantic-protector">
+      <div class="ribbon">
+        <span class="ribbon-content">Every Cupcake Recipe</span>
+      </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <% if current_user %>
+    <div class="large-5 large-centered small-10 small-offset-2 columns">
+    <%= link_to 'Add a Cupcake Recipe', new_mastercake_path, class:"add-cupcake" %>
     </div>
+  <% else %>
+    <div class="small-10 small-offset-2 large-6 large-offset-3 columns">
+      <%= link_to 'Sign in to Add a Cupcake Recipe', signin_path, class:"add-cupcake" %>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="large-10 large-uncentered small-8 small-centered columns">
+    <% for mastercake in @mastercakes %>
+      <%= render 'cake', object: mastercake %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+
 
 
 

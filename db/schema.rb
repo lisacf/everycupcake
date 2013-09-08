@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826002942) do
+ActiveRecord::Schema.define(version: 20130831020548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,8 +53,11 @@ ActiveRecord::Schema.define(version: 20130826002942) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.float    "average_rating", default: 0.0, null: false
+    t.integer  "ratings_count",  default: 0
   end
 
+  add_index "mastercakes", ["average_rating"], name: "index_mastercakes_on_average_rating", using: :btree
   add_index "mastercakes", ["user_id"], name: "index_mastercakes_on_user_id", using: :btree
 
   create_table "measures", force: true do |t|
@@ -77,6 +80,19 @@ ActiveRecord::Schema.define(version: 20130826002942) do
   add_index "proportions", ["measure_id"], name: "index_proportions_on_measure_id", using: :btree
   add_index "proportions", ["recipe_id"], name: "index_proportions_on_recipe_id", using: :btree
   add_index "proportions", ["unit_id"], name: "index_proportions_on_unit_id", using: :btree
+
+  create_table "ratings", force: true do |t|
+    t.integer  "star"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.text     "review"
+  end
+
+  add_index "ratings", ["rateable_id", "rateable_type"], name: "index_ratings_on_rateable_id_and_rateable_type", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "recipes", force: true do |t|
     t.string   "name"

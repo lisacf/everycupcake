@@ -1,5 +1,8 @@
 Cupcake::Application.routes.draw do
-  resources :mastercakes
+  resources :mastercakes do
+    resources :ratings
+    resources :reviews
+  end
   resources :units
   resources :measures
   resources :ingredients

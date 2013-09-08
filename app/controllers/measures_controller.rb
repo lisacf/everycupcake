@@ -1,28 +1,21 @@
 class MeasuresController < ApplicationController
   before_action :set_measure, only: [:show, :edit, :update, :destroy]
 
-  # GET /measures
-  # GET /measures.json
   def index
     @measures = Measure.all
   end
 
-  # GET /measures/1
-  # GET /measures/1.json
   def show
+    
   end
 
-  # GET /measures/new
   def new
     @measure = Measure.new
   end
 
-  # GET /measures/1/edit
   def edit
   end
 
-  # POST /measures
-  # POST /measures.json
   def create
     @measure = Measure.new(measure_params)
 
@@ -37,8 +30,6 @@ class MeasuresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /measures/1
-  # PATCH/PUT /measures/1.json
   def update
     respond_to do |format|
       if @measure.update(measure_params)
@@ -51,8 +42,6 @@ class MeasuresController < ApplicationController
     end
   end
 
-  # DELETE /measures/1
-  # DELETE /measures/1.json
   def destroy
     @measure.destroy
     respond_to do |format|
@@ -62,12 +51,10 @@ class MeasuresController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_measure
       @measure = Measure.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def measure_params
       params.require(:measure).permit(:name)
     end

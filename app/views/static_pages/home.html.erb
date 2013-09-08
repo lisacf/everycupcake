@@ -1,21 +1,25 @@
-<div class="row">
-	<div class="large-4 offset-1 small-9 columns">
-			<ul data-orbit>
-				<li>
-						<%= image_tag "/assets/cupcakes.png" %>
-				</li>
-				<li>
-					<%= image_tag "/assets/choccherrycc.png" %>
-				</li>				
-				<li>
-					<%= image_tag "/assets/chocolatecc.png" %>
-				</li>
-			</ul>
-	</div>
-	<div class="large-6 columns">
-		<%= image_tag "/assets/cupcakestore.png" %>
-	</div>
-	<div class="large-2 columns">
-		<%= link_to "Sign Up", signup_path, class:"medium button" %>
+<div class="bgpinkpaper">
+	<div class="row">
+		<div class="small-11 small-centered columns">
+			<h1>Cupcake Lover's Unite</h1>
+		</div>
+		<div class="large-4 offset-1 small-9 columns">
+		<!-- CAROUSEL -->
+				<ul data-orbit>
+					<li>
+						<%#= image_tag "/assets/cupcakes.png" %>
+					</li>
+					<li>
+						<%#= image_tag "/assets/choccherrycc.png" %>
+					</li>				
+					<li>
+						<%#= image_tag "/assets/chocolatecc.png" %>
+					</li>
+				</ul>
+		</div>
+
+
+			<%= link_to "Sign Up", signup_path, class:"medium button" %>
 	</div>
 </div>
+

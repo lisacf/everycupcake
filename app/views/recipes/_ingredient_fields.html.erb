@@ -1,14 +1,24 @@
 <fieldset>
-	<div class="field">
-		<%= f.grouped_collection_select :unit_id, Measure.order(:name), :units, :name, :id, :name, {include_blank: true}, {class: 'measure_unit_id'} %>
+	<div class="row">
+		<div class="large-6 columns">
+			<div class="ingredient-label">Select amount:</div>
+			<br>
+			<div class="row">
+				<div class="large-6 columns">
+					<%= f.grouped_collection_select :unit_id, Measure.order(:name), :units, :name, :id, :name, {include_blank: true}, {class: 'measure_unit_id'} %>
+				</div>
+				<div class="large-6 columns">
+					<%= f.collection_select :measure_id, Measure.all, :id, :name, {include_blank: true}, {class: 'measure_id'}%>
+				</div>
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<div class="ingredient-wrap">
+				<%= f.label :ingredient_token, "Ingredient:", class:"ingredient-label2" %>
+		 	 	<%= f.text_field :ingredient_token, class: "inputtoken", data: {load:@recipe.ingredients} %>
+		 	 </div>
+		</div>
+			<%= f.hidden_field :_destroy %>
 	</div>
-	<div class="field">
-		<%= f.collection_select :measure_id, Measure.all, :id, :name, {include_blank: true}, {class: 'measure_id'}%>
-	</div>
-	<div class="field">
-		<%= f.label :ingredient_token, "Ingredient" %>
- 	 	<%= f.text_field :ingredient_token, class: "inputtoken", data: {load:@recipe.ingredients} %>
-	</div>
-		<%= f.hidden_field :_destroy %>
   	<%= link_to "remove", '#', class: "remove_fields" %>
 </fieldset>

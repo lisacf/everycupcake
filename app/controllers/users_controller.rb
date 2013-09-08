@@ -53,7 +53,8 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :screen_name, :password, :password_confirmation, :admin, :recipe_ids, :mastercake_ids)
+    params.require(:user).permit(:name, :email, :screen_name, :password, :password_confirmation, :admin,
+                                 :recipe_ids, :mastercake_ids, :rating_ids)
   end
 
   # Before filters

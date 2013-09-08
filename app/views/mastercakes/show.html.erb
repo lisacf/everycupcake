@@ -1,105 +1,144 @@
 <%= provide :title, @mastercake.name %>
-<h1><%= @mastercake.name %></h1>
-<div class="row">
-	<div class="large-2 columns">
-		<%= image_tag @mastercake.image_url(:thumb).to_s %>
+<div class="purplebg-paper">
+	<div class="row">
+		<div class="large-8 columns recipe-name">
+					<div class="non-semantic-protector">
+						<div class="ribbon">
+							<span class="ribbon-content"><%= @mastercake.name %></span>
+						</div>
+					</div>
+		</div>
 	</div>
-	<div class="large-10 columns">
-		<h2>Description:</h2>
-		<p>  
-			<%= @mastercake.description %>
-		</p>
-		<p>
-		 <h3>Source:</h3>
-		  <%= @mastercake.source %>
-		</p>
+	<div class="row">
+		<div class="small-6 small-centered columns">
+			<a href="#" data-reveal-id="myModal">Click to Rate Recipe</a>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<% if @cake_recipes.count >= 1 %>
+	<div class="row">
+		<div class="large-3 columns">
+						<div class="mastercakes">
+						    <% if @mastercake.image? %>
+						    	<div class="mastercake">
+						      <%= image_tag @mastercake.image_url(:thumb).to_s, :alt => @mastercake.name, 
+						                                        :title => @mastercake.description %>
+						      </div>
+						    <% else %>
+						    	<div class="placeholdercake">
+						    	<%= form_tag "/mastercakes/#{@mastercake.id}", method: 'patch', multipart:true do %>
+						    		<%= file_field_tag "mastercake[image]", id:"mastercake_image", required: true %>
+						    		<div class="image-frame"><%= submit_tag "Click to Submit", class:"submit-photo" %></div>
+						    	<% end %>
+						    	</div>
+						    <% end %>
+						  <br>
+						  <div class= "rating-bar">
+						    <%= render_stars(@mastercake.average_rating) %>
+						  </div>
+						  <div class="rating-number">
+						    <small><%= pluralize @mastercake.ratings.size, 'rating' %></small>
+						  </div>
+						</div><!-- /end #mastercakes -->
+		</div>
+		<div class="large-5 columns">
+						<div class="cake-info"> 
+								<%= markdown(@mastercake.description) %>
+							<p>
+							 <b>Source: </b><%= @mastercake.source %>
+							</p>
+				</div>
+		</div>
 		<div class="large-4 columns">
+				<div class = "row">
+					<div class="small-8 small-centered columns">
+						<%#= render "ratings/form" %>
+					</div>
+				</div>
+		</div>
+	</div>
+
+	<% if @cake_recipes.count >= 1 %>
 				<% @cake_recipes.each do |cake| %>
 					<%= render "recipe", object: cake %>
 				<% end %>
-		</div>
 	<% end %>
 	<% if @filling_recipes.count >= 1 %>
-		<div class="large-4 columns">
 				<% @filling_recipes.each do |filling| %>
 					<%= render "recipe", object: filling %>
 				<% end %>
-		</div>
 	<% end %>
 	<% if @frosting_recipes.count >= 1 %>
-		<div class="large-4 columns">
 				<% @frosting_recipes.each do |frosting| %>
 					<%= render "recipe", object: frosting %>
 				<% end %>
-		</div>
 	<% end %>
-</div>
 
-
+<% if !current_user.nil? and @mastercake.user_id == current_user.id  %>
+	<h3>Click on an Image Below to Build Your Recipe</h3>
+	<div class="mastercake-show">
+		<ul class="ch-grid">
+			<li>
+				<div class="ch-item ch-img-1">
+					<div class="ch-info-wrap">
+						<div class="ch-info">
+							<div class="ch-info-front ch-img-1"></div>
+							<div class="ch-info-back">
+								<p><%= link_to "CAKE", cake_recipes_path(mastercake_id: @mastercake.id) %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="ch-item ch-img-2">
+					<div class="ch-info-wrap">
+						<div class="ch-info">
+							<div class="ch-info-front ch-img-2"></div>
+							<div class="ch-info-back">
+								<p><%= link_to "FILLING", filling_recipes_path(mastercake_id: @mastercake.id) %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="ch-item ch-img-3">
+					<div class="ch-info-wrap">
+						<div class="ch-info">
+							<div class="ch-info-front ch-img-3"></div>
+							<div class="ch-info-back">
+								<p><%= link_to "FROSTING", frosting_recipes_path(mastercake_id: @mastercake.id) %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
-</div>
-		<h2>Click on an Image Below to Build Your Recipe</h2>
-		<div class="mastercake">
-			<ul class="ch-grid">
-				<li>
-					<div class="ch-item ch-img-1">
-						<div class="ch-info-wrap">
-							<div class="ch-info">
-								<div class="ch-info-front ch-img-1"></div>
-								<div class="ch-info-back">
-									<p><%= link_to "CAKE", cake_recipes_path(mastercake_id: @mastercake.id) %></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="ch-item ch-img-2">
-						<div class="ch-info-wrap">
-							<div class="ch-info">
-								<div class="ch-info-front ch-img-2"></div>
-								<div class="ch-info-back">
-									<p><%= link_to "FILLING", filling_recipes_path(mastercake_id: @mastercake.id) %></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="ch-item ch-img-3">
-						<div class="ch-info-wrap">
-							<div class="ch-info">
-								<div class="ch-info-front ch-img-3"></div>
-								<div class="ch-info-back">
-									<p><%= link_to "FROSTING", frosting_recipes_path(mastercake_id: @mastercake.id) %></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+<% end %>
 		<div class="row">
 			<div class="large-4 columns">
 			<%= form_for @mastercake do |f| %>
-		    <%= f.label :recipe_ids, "Using Existing Cake Recipe" %>
-		    <%= f.collection_select :recipe_ids, Recipe.where(:cupcake_part => "cake"), :id, :name %>
+		    <%#= f.label :recipe_ids, "Using Existing Cake Recipe" %>
+		    <%#= f.collection_select :recipe_ids, Recipe.where(:cupcake_part => "cake"), :id, :name %>
 		  </div>
 		  <div class="large-4 columns">
-		    <%= f.label :recipe_ids, "Select a Filling Recipe" %>
-		    <%= f.collection_select :recipe_ids, Recipe.where(:cupcake_part => "filling"), :id, :name %>
+		    <%#= f.label :recipe_ids, "Select a Filling Recipe" %>
+		    <%#= f.collection_select :recipe_ids, Recipe.where(:cupcake_part => "filling"), :id, :name %>
 		  </div>
 		  <div class="large-4 columns">
-		    <%= f.label :recipe_ids, "Select a Frosting Recipe" %>
-		    <%= f.collection_select :recipe_ids, Recipe.where(:cupcake_part => "frosting"), :id, :name %>
+		    <%#= f.label :recipe_ids, "Select a Frosting Recipe" %>
+		    <%#= f.collection_select :recipe_ids, Recipe.where(:cupcake_part => "frosting"), :id, :name %>
 		  </div>
 		</div>
-		    <%= f.submit "Add Existing Recipe", class: "medium button round" %>
+		    <%#= f.submit "Add Existing Recipe", class: "medium button round" %>
 		  <% end %>
 
 	<%= link_to 'Edit', edit_mastercake_path(@mastercake) %> |
 	<%= link_to 'Back', mastercakes_path %>
+	</div>
+	<div class="reveal-modal-bg" style="display: none"></div>
+	<div id="myModal" class="reveal-modal">
+		<h1>Review <%= @mastercake.name %></h1>
+		<%= render "ratings/form" %>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>

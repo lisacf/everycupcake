@@ -197,25 +197,47 @@ $body-bg: #fff;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: emCalc(14px);
 // $input-bg-color: #fff;
-// $input-focus-bg-color: darken(#fff, 2%);
-// $input-border-color: darken(#fff, 20%);
-// $input-focus-border-color: darken(#fff, 40%);
-// $input-border-style: solid;
-// $input-border-width: 1px;
+$input-focus-bg-color: lighten(#ffd9ff, 5%);
+$input-border-color: lighten(#cea4ff, 5%);
+$input-focus-border-color: lighten(#cea4ff, 10%);
+$input-border-style: inset;
+$input-border-width: 2px;
+input[type="file"] {
+	background:transparent;
+	width:175px;
+	height: 25px;
+	position: relative;
+	float:right;
+	z-index: 2;
+}
+.submit-photo {
+	position:relative;
+	width:190px;
+	height:151px;
+	background: #ffa5e8 url(../assets/placeholdercc.png);
+	text-align: center;
+	font-size:1.5em;
+	color:yellow;
+}
+
 // $input-disabled-bg: #ddd;
 // $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 
 // We use these to style the fieldset border and spacing.
-// $fieldset-border-style: solid;
-// $fieldset-border-width: 1px;
-// $fieldset-border-color: #ddd;
-// $fieldset-padding: emCalc(20px);
-// $fieldset-margin: emCalc(18px) 0;
+fieldset {
+	background-color: #fff;
+}
+$fieldset-border-style: inset;
+$fieldset-border-width: 3px;
+$fieldset-border-color: #ddd;
+
+$fieldset-padding: emCalc(20px);
+$fieldset-margin: emCalc(18px) 0;
 
 // We use these to style the legends when you use them
-// $legend-bg: #fff;
-// $legend-font-weight: bold;
-// $legend-padding: 0 emCalc(3px);
+$legend-bg: none;
+$legend-font-weight: bold;
+$legend-padding: 0 emCalc(3px);
 
 // We use these to style the prefix and postfix input elements
 // $input-prefix-bg: darken(#fff, 5%);
@@ -1026,21 +1048,28 @@ $topbar-menu-icon-color-toggled: #663fbc;
   border-top: 1px solid #eaeaea;
   color: #fff;
   background: #663fbc;
+  z-index: 100;
   a{
   	color: #fff;
   	&:hover {
-  		color: #222;
+  		color: yellow;
   	}
   }
-  small{
-  	float: left;
+  .by-home {
+  	float:left;
   }
-  ul {
+  .by {
+  	clear: left;
+  	float: left;
+  	font-size: 0.75em;
+  	padding-top: 0.5em;
+  }
+  nav ul {
   	float: right;
   	list-style: none;
   	li {
   		float: left;
-  		margin-left: 10px;
+  		margin-left: 1em;
   	}
   }
 }
@@ -1087,6 +1116,296 @@ $topbar-menu-icon-color-toggled: #663fbc;
 		&:last-child {
 			border-bottom: 1px solid #222;
 		}
+	}
+}
+/* FORMAT OF STAR ratings BAR */
+/* Star rating inspired by the following blog post. 
+http://lea.verou.me/2011/08/accessible-star-rating-widget-with-pure-css/ */
+.ratings {
+    float:left;
+    width: 210px;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.ratings:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.ratings:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+    content: url(../assets/outlinecake60.png);
+}
+
+.ratings > input:checked ~ label {
+	 	content: url(../assets/colorcake60.png);
+}
+
+.ratings:not(:checked) > label:hover,
+.ratings:not(:checked) > label:hover ~ label {
+	 	content: url(../assets/colorcake60.png);
+}
+
+.ratings > input:checked + label:hover,
+.ratings > input:checked + label:hover ~ label,
+.ratings > input:checked ~ label:hover,
+.ratings > input:checked ~ label:hover ~ label,
+.ratings > label:hover ~ input:checked ~ label {
+	 	content: url(../assets/colorcake60.png);
+}
+
+.ratings > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+/* MASTERCAKE INDEX VIEW */
+.mastercakes {
+	position:relative;
+	display: inline-block;
+	float:left;
+	border: ridge 3px #CCC;
+	padding: 10px 10px;
+	width:212px;
+	margin: 1em 0.5em 0em 0.5em;
+	background: #FFF;
+}
+.mastercake-name {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+	height:40px;
+	font-weight: bold;
+}
+.mastercake {
+	width:190px;
+	height:150px;
+	background: #fff;
+}
+.mastercake .actions {
+	font-size: 10px;
+	text-align: center;
+	color: #777;
+}
+.mastercake img {
+	border: inset 3px #FFF;
+	max-width: 100%;
+	background: #fff;
+}
+.rating-bar {
+	float:left;
+	margin: 0 auto;
+	border: solid 1px #CCC;
+}
+.page-head {
+	text-align: center;
+}
+.rating-number {
+	clear:both;
+}
+.purplebg-paper {
+	background: url(../assets/bgpurplepaper.png)
+}
+.bgaquapaper {
+	background: url(../assets/bgaquapaper1.png)
+}
+.bgpinkpaper {
+	background: url(../assets/bgpinkpaper.png)
+}
+a.add-cupcake {
+	position:relative;
+	display:block;
+	width:70%;
+	text-align:center;
+	background: pink;
+	border: 3px outset #ddd;
+	padding: 0.75em;
+	margin: 0em 0.5em 0.5em 0.5em;
+	color:#06c5c7;
+}
+
+/* STORE FRONT PAGE*/
+.littlegirl {
+	position:relative;
+	top: -200px;
+}
+.man {
+	position:relative;
+	top: -650px;
+}
+
+#storebanner{
+   background:url('../images/storesall.png') repeat-x 10px 50%;
+   width: 1400px;
+   height: 480px;
+   z-index: 20;
+
+}
+/* CUPCAKE SHOW PAGE */
+ #rate-button {
+ 	position: relative;
+ 	clear: both;
+ 	float:left;
+ }
+
+ .cake-info {
+ 	position:relative;
+ 	display:block;
+ 	width: 100%;
+ 	height:265px;
+ 	overflow:hidden;
+ 	padding: 1em;
+ 	margin-top:1em;
+ 	font-size:0.9em;
+ 	background: #fff;
+ 	border:ridge 3px #ddd;
+ }
+ .recipe {
+ 	list-style: none;
+ }
+ .bake-instructions {
+ 	list-style:none;
+ }
+ .recipe-name {
+	text-align:center;
+ }
+ .recipe-format {
+ 	background:#fff;
+ 	border:ridge 3px #ddd;
+ }
+
+ /* FORMAT RIBBON TITLE BAR */
+
+.ribbon {
+  width: 100%;
+  position: relative;
+  background: #06c5c7;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.3);
+  padding: 1em 2em;
+  margin: 0.5em 0 0.5em;
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 20px rgba(0,0,0,0.1), 0px 1px 1px rgba(0,0,0,0.4);
+  background: -webkit-linear-gradient(top, #78eeeb, #06c5c7);
+  display: inline-block;
+}
+.ribbon:before, .ribbon:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: -1em;
+  border: 1.5em solid #06c5c7;
+	z-index: -1;
+	box-shadow:0px 1px 0px
+}
+.ribbon:before {
+  left: -2em;
+  border-right-width: 1.5em;
+  border-left-color: transparent;
+}
+.ribbon:after {
+  right: -2em;
+  border-left-width: 1.5em;
+  border-right-color: transparent;
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-style: solid;
+  border-color: #804f7c transparent transparent transparent;
+  bottom: -1em;
+}
+.ribbon .ribbon-content:before {
+  left: 0;
+  border-width: 1em 0 0 1em;
+}
+.ribbon .ribbon-content:after {
+  right: 0;
+  border-width: 1em 1em 0 0;
+}
+.non-semantic-protector {
+	position:relative;
+	z-index: 2;
+}
+/* INGREDIENT AMOUNT TO LOOK SIMILAR TO CHOSEN */
+.ingredient-label {
+	font-size: 0.875em;
+	color: #4d4d4d;
+	font-weight:500;
+	margin-bottom: 0.1875em;
+}
+.chosen-like {
+	border: 1px solid #aaa;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	overflow:hidden;
+	padding: 0 0 0 8px;
+	height: 22px;
+	width: 26em;
+	border-radius: 5px;
+	background-color: #fff;
+	color: #444;
+	margin-bottom: 1em;
+	text-decoration: none;
+	white-space: nowrap;
+	line-height:22px;
+	background: #ffffff; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI4MSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZWRlZGVkIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top,  #ffffff 81%, #ededed 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(81%,#ffffff), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 81%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 81%,#ededed 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 81%,#ededed 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 81%,#ededed 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-8 */
+
+}
+a.chosen-single {
+	margin-bottom: 1em;
+	width:22em;
+}
+/* FORMAT FOR RECIPE INSTRUCTIONS */
+#bake-temp, #bake-time, #prep-time {
+	position:relative;
+	float:right;
+}
+/**/
+.thebasics {
+	position: relative;
+	top: -1em
+}
+
+/* FORMATS FOR LARGER SCREENS */
+@media only screen and (min-width: 768px) {
+	a.chosen-single {
+		width: 12em;
+	}
+	.chosen-container {
+		width: 12em;
+	}
+	.chosen-like  {
+		width: 12em;
+	}
+	.ingredient-wrap {
+		margin-left: 1.5em;
+	}
+	.ingredient-label2 {
+		margin-bottom: .5em;
 	}
 }
 

@@ -17,18 +17,21 @@
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
   <div class="field">
     <%= f.label :source %><br>
     <%= f.text_field :source %>
   </div>
   <div class="field">
-    <%= f.file_field :image %>
+    <label for="mastercake_image" id="mastercake-image-button">
+      Upload Image
+      <%= f.file_field :image %>
+    </label>
     <%= f.label :remote_image_url, "or image url" %>
     <%= f.text_field :remote_image_url %>
   </div>
   <div class="actions">
-    <%= f.submit "Build Recipe", class: "medium button"%>
+    <%= f.submit "Ready for Step 2", class: "medium round button"%>
   </div>
 <% end %>

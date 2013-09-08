@@ -19,3 +19,5 @@
 //= require_tree .
 
 $(document).foundation();
+$('#myModal').foundation('reveal', 'close');
+

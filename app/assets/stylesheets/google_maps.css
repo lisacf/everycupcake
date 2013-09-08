@@ -42,4 +42,13 @@
 .googlemap li:nth-child(odd) {
   background-color: #fae2f2;
 }
-
+#cupcake-search-bar{
+  position:relative;
+  display:inline-block;
+  float:left;
+}
+.store-search-button {
+  position:relative;
+  display:block;
+  float:right;
+}

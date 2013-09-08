@@ -1,32 +1,54 @@
-<fieldset>
-  <h2><%= object.name %> <%= object.cupcake_part %> Recipe</h2>
-  <h2> Ingredients: </h2>
-  <ul>
-  <% object.proportions.each do |item| %>
-  <li>
-  	<% if item.unit %>
-    	<%= item.unit.name %>
-    <% end %>
-    <%= item.measure.name %>
-    <%= item.ingredient.name %>
-  </li>
-  <% end %>
-  </ul>
-  <h2> Instructions: </h2>
-  <ul>
-    <% object.instructions.each do |instruction| %>
-      <% if instruction.preheat %>
-      <li>Preheat oven to <%= instruction.preheat%> °F</li>
-      <% end %>
-      <% if instruction.baketime %>
-      <li>Bake for <%= instruction.baketime %> minutes </li>
-      <% end %>
-      <% if instruction.baketemp %>
-      <li>Bake Temperature <%= instruction.baketemp%> °F</li>
-      <% end %>
-      <li><%= instruction.content %> </li>
-    <% end %>
-  </ul>
+<div>
+  <div class="row">
+    <div class="large-8 columns recipe-name">
+      <div class="non-semantic-protector">
+        <div class="ribbon">
+          <span class="ribbon-content"><%= object.cupcake_part %>: <%= object.name %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-8 columns recipe-format">
+      <div class="row">
+        <div class="large-6 columns">
+          <h3>Ingredients:</h3>
+            <ul class = "recipe">
+              <% object.proportions.each do |item| %>
+                <li>
+                	<% if item.unit %>
+                  	<%= item.unit.name %>
+                  <% end %>
+                  <% if item.measure.name ==  "none (1 egg)" %>
+                  <% else %>
+                  <%= item.measure.name %>
+                  <% end %>
+                  <%= item.ingredient.name %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="large-6 columns">
+            <h3> Instructions: </h3>
+            <ul class="bake-instructions">
+              <% object.instructions.each do |instruction| %>
+                <% if instruction.preheat %>
+                <li>Preheat oven to <%= instruction.preheat%> °F</li>
+                <% end %>
+                <% if instruction.baketime %>
+                <li>Bake for <b><%= instruction.baketime %></b> minutes </li>
+                <% end %>
+                <% if instruction.baketemp %>
+                <li>Oven Temperature: <%= instruction.baketemp%> °F</li>
+                <% end %>
+                <br>
+                <li><%= markdown(instruction.content) %> </li>
+              <% end %>
+              </ul>
+            </div>
+          </div>
+      </div>
+  </div>
 
-  <%= link_to 'Edit', edit_recipe_path(object) %>
-</fieldset>
+      <%= link_to 'Edit', edit_recipe_path(object) %>
+</div>
