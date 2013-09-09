@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :key %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -26,10 +26,10 @@
   <div class="field">
     <label for="mastercake_image" id="mastercake-image-button">
       Upload Image
-      <%= f.file_field :image %>
+      <%#= f.file_field :image %>
     </label>
-    <%= f.label :remote_image_url, "or image url" %>
-    <%= f.text_field :remote_image_url %>
+    <%#= f.label :remote_image_url, "or image url" %>
+    <%#= f.text_field :remote_image_url %>
   </div>
   <div class="actions">
     <%= f.submit "Ready for Step 2", class: "medium round button"%>

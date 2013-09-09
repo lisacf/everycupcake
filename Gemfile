@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.4'
 gem 'pg', '0.15.1'
 gem 'chosen-rails'
 
+
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
   gem 'guard-rspec', '2.5.0'
@@ -29,6 +30,10 @@ end
 gem "carrierwave"
 gem "rmagick"
 gem "redcarpet"
+gem "fog"
+gem "carrierwave_direct"
+gem "sidekiq"
+gem "nokogiri"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -68,6 +73,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
+
 
 # Use debugger
 gem 'debugger', group: [:development, :test]

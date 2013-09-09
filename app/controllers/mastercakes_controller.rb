@@ -27,6 +27,8 @@ class MastercakesController < ApplicationController
 
     respond_to do |format|
       if @mastercake.save
+        logger.debug "THIS IS IN CREATE: #{@mastercake.key}"
+
         format.html { redirect_to @mastercake, notice: 'Mastercake was successfully created.' }
         format.json { render action: 'show', status: :created, location: @mastercake }
       else

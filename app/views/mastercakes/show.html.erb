@@ -24,10 +24,19 @@
 						      </div>
 						    <% else %>
 						    	<div class="placeholdercake">
-						    	<%= form_tag "/mastercakes/#{@mastercake.id}", method: 'patch', multipart:true do %>
-						    		<%= file_field_tag "mastercake[image]", id:"mastercake_image", required: true %>
-						    		<div class="image-frame"><%= submit_tag "Click to Submit", class:"submit-photo" %></div>
+						    	<%= s3_uploader_form patch: mastercake_url(@mastercake), as: "mastercake[image_url]" do %>
+						    		<%= file_field_tag :file, multiple: true %>
 						    	<% end %>
+						    	
+						    	<script id="template-upload" type="text/x-tmpl">
+						    	<div class="upload">
+						    		{%=o.name%}
+						    		<div class="progress"><div class="bar" style="width: 0%"></div></div>
+						    	</div>
+						    	</script>
+						    	<%#= form_tag "/mastercakes/#{@mastercake.id}", method: 'patch', multipart:true do %>
+						    		<%#= file_field_tag "mastercake[image]", id:"mastercake_image", required: true %>
+						    		<div class="image-frame"><%#= submit_tag "Click to Submit", class:"submit-photo" %></div>
 						    	</div>
 						    <% end %>
 						  <br>
