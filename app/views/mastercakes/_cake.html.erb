@@ -1,10 +1,10 @@
 <div class="mastercakes">
   <div class="mastercake" >
     <% if object.image? %>
-      <%= link_to (image_tag object.image_url(:thumb).to_s, :alt => object.name, 
+      <%= link_to (image_tag object.image_url.to_s, :alt => object.name, 
                                         :title => object.description), object  %>
     <% else %>
-      <%= link_to (image_tag "../assets/placeholderimage.png", :alt => "photo placeholder", :title => "Wanted Cupcake Photo"), object  %>
+      <%= link_to (image_tag image_url("placeholderimage.png"), :alt => "photo placeholder", :title => "Wanted Cupcake Photo"), object  %>
     <% end %>
   </div><!-- /end .mastercake -->
   <div class="mastercake-name">

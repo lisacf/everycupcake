@@ -24,10 +24,10 @@ jQuery ->
 	  newdiv = $(this).prev()
 	  newdivunit = $(newdiv).find(".measure_unit_id")
 	  nameofunit = $(newdivunit).attr('id')
+	  newdivunit.hide()
 	  measurename = nameofunit.replace(/unit/, "measure" )
 	  ingredientid = nameofunit.replace(/unit/, "ingredient")
 	  ingredienttokenid = nameofunit.replace(/unit\_id/, "ingredient\_token")
-	  $("##{ingredientid}").attr("data-placeholder", "Select Ingredient").chosen()
 	  $("##{measurename}").attr("data-placeholder", "Measurement").chosen()
 	  $("##{ingredienttokenid}").tokenInput '/ingredients.json',
 			theme: 'facebook',
@@ -35,7 +35,6 @@ jQuery ->
 			tokenLimit: 1
 	  measurediv = $(newdiv).find("##{measurename}")
 	  $(measurediv).addClass("measure_id")
-	  newdivunit.hide()
 	  $('.measure_id').change ->
 	    selectedmeasure = $(this).attr('id')
 	    newdivunit.show()
@@ -57,7 +56,7 @@ jQuery ->
 			if (value.id.match(/unit/))
 				$("#" + value.id)
 			else
-				$("#" + value.id).chosen()
+				$("#" + value.id)
 
 	$.each $('.inputtoken'), (key, value) ->
 		$("#" + value.id).tokenInput '/ingredients.json',
