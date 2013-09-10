@@ -75,7 +75,7 @@
 
 	top: 20px;
 	left: 20px;
-	background: #fff url(../assets/pink.jpg);
+	background-image: image-url("pink.jpg");
 	box-shadow: 
 		0 0 0 20px rgba(255,255,255,0.2), 
 		inset 0 0 3px rgba(115,114, 23, 0.8);
@@ -128,15 +128,15 @@
 }
 
 .ch-img-1 { 
-	background-image: url(../assets/vanilla.jpg);
+	background-image: image-url("vanilla.jpg");
 }
 
 .ch-img-2 { 
-	background-image: url(../assets/filling.jpg);
+	background-image: image-url("filling.jpg");
 }
 
 .ch-img-3 { 
-	background-image: url(../assets/icing.jpg);
+	background-image: image-url("icing.jpg");
 }
 
 .ch-info a {
