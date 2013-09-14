@@ -22,7 +22,7 @@ class MastercakesController < ApplicationController
   end
 
   def create
-    @mastercake = Mastercake.new(mastercake_params)
+    @mastercake = Mastercake.create(mastercake_params)
     @mastercake.update_attribute(:user_id, current_user.id)
 
     respond_to do |format|
@@ -40,9 +40,11 @@ class MastercakesController < ApplicationController
     respond_to do |format|
       if @mastercake.update(mastercake_params)
         format.html { redirect_to @mastercake, notice: 'Mastercake was successfully updated.' }
+        format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
+        format.js
         format.json { render json: @mastercake.errors, status: :unprocessable_entity }
       end
     end
@@ -63,6 +65,6 @@ class MastercakesController < ApplicationController
 
     def mastercake_params
       params.require(:mastercake).permit(:name, :description, :source, :image, :remote_image_url,
-                                         :recipe_ids, :user_id, :average_rating)
+                                         :recipe_ids, :user_id, :average_rating, :complete)
     end
 end

@@ -1,63 +1,84 @@
 <%= provide :title, @mastercake.name %>
-<div class="purplebg-paper">
-	<div class="row">
-		<div class="large-8 columns recipe-name">
-					<div class="non-semantic-protector">
-						<div class="ribbon">
-							<span class="ribbon-content"><%= @mastercake.name %></span>
-						</div>
-					</div>
+
+<div class="row"><!-- CAKE TITLE -->
+	<div class="large-8 small-12 columns recipe-name">
+		<div class="non-semantic-protector">
+			<div class="ribbon">
+				<span class="ribbon-content"><%= @mastercake.name %></span>
+			</div>
 		</div>
 	</div>
+	<div class="large-3 large-offset-1 small-12 columns">
+		<br>
+		<br>
+		<% if current_user && !@mastercake.ratings.pluck(:user_id).include?(current_user.id) && @mastercake.user_id != current_user.id %>
+		<a href="#" data-reveal-id="reviewModal" class="cake-review-button">Review Recipe</a>
+		<% else %>
+			<% if current_user.nil? %>
+				<%= link_to "Sign in to Review", signin_path %>
+			<% end %>
+		<% end %>
+	</div>
+</div><!-- Recipe Title Ribbon TOP ROW LARGE -->
 	<div class="row">
 		<div class="small-6 small-centered columns">
-			<a href="#" data-reveal-id="myModal">Click to Rate Recipe</a>
+			
 		</div>
-	</div>
+	</div><!-- End modal rating link -->
 	<div class="row">
 		<div class="large-3 columns">
-						<div class="mastercakes">
-						    <% if @mastercake.image? %>
-						    	<div class="mastercake">
-						      <%= image_tag @mastercake.image_url.to_s, :alt => @mastercake.name, 
-						                                        :title => @mastercake.description %>
-						      </div>
-						    <% else %>
-						    	<%= form_tag "/mastercakes/#{@mastercake.id}", method: 'patch', multipart:true do %>
-						    		<%= file_field_tag "mastercake[image]", id:"mastercake_image", required: true %>
-						    		<div class="image-frame"><%= submit_tag "Click to Submit", class:"submit-photo" %></div>
-						    	<% end %>
-						    <% end %>
-						  <br>
-						  <div class= "rating-bar">
-						    <%= render_stars(@mastercake.average_rating) %>
-						  </div>
-						  <div class="rating-number">
-						    <small><%= pluralize @mastercake.ratings.size, 'rating' %></small>
-						  </div>
-						</div><!-- /end #mastercakes -->
-		</div>
+			<div class="mastercakes">
+			    <% if @mastercake.image? %>
+			    	<div class="mastercake">
+			      <%= image_tag @mastercake.image_url.to_s, :alt => @mastercake.name, 
+			                                        :title => @mastercake.description %>
+			      </div>
+			    <% else %>
+			    	<% if current_user == @mastercake.user %>
+			    		<%= render "photo", object: @mastercake %>
+			    			<div id="image-frame"><div class="addphoto"><%= image_tag image_url('addphoto.png') %></div></div>
+			    	<% else %>
+			    	  <%= image_tag image_url("placeholderimage.png"), :alt => "photo placeholder", :title => "Wanted Cupcake Photo" %>
+			    	<% end %>
+			    <% end %>
+			  <br>
+			  <div class= "rating-bar">
+			    <%= render_stars(@mastercake.average_rating) %>
+			  </div>
+			  <div class="rating-number">
+			    <small><%= pluralize @mastercake.ratings.size, 'rating' %></small>
+			  </div>
+			</div><!-- /end #mastercakes -->
+		</div><!-- /end of mastercake image view polaroid -->
 		<div class="large-5 columns">
-						<div class="cake-info"> 
-								<%= markdown(@mastercake.description) %>
-							<p>
-							 <b>Source: </b><%= @mastercake.source %>
-							</p>
-				</div>
+			<div class="cake-info"> 
+					<%= markdown(@mastercake.description) %>
+					<p>
+					 <b>Source: </b><%= @mastercake.source %>
+					</p>
+			</div>
 		</div>
 		<div class="large-4 columns">
-				<div class = "row">
-					<div class="small-8 small-centered columns">
-						<%#= render "ratings/form" %>
-					</div>
-				</div>
+			<h3 class="review-title">REVIEWS</h3>
+			<% for rating in @mastercake.ratings %>
+				<fieldset class="review-block">
+						<div class="rating-bar">
+						<%= render_stars(rating.star) %>
+						</div>
+						<div class="review-text">
+						<%= rating.review %>
+						</div>
+						<div class="review-author">
+						Cupcake Aficionado: <%= rating.user.name if rating.user %>
+						</div>
+				</fieldset>
+			<% end %>
 		</div>
-	</div>
-
+	</div><!-- end of mastercake info section -->
 	<% if @cake_recipes.count >= 1 %>
-				<% @cake_recipes.each do |cake| %>
-					<%= render "recipe", object: cake %>
-				<% end %>
+		<% @cake_recipes.each do |cake| %>
+			<%= render "recipe", object: cake %>
+		<% end %>
 	<% end %>
 	<% if @filling_recipes.count >= 1 %>
 				<% @filling_recipes.each do |filling| %>
@@ -70,8 +91,17 @@
 				<% end %>
 	<% end %>
 
-<% if !current_user.nil? and @mastercake.user_id == current_user.id  %>
-	<h3>Click on an Image Below to Build Your Recipe</h3>
+
+
+
+<% if !current_user.nil? and @mastercake.user_id == current_user.id and @mastercake.complete == false %>
+	<div class="row">
+		<div class="large-4 large-offset-2 columns">
+			<div class="recipe-choices">Click Image to Build Recipe
+			</div>
+		</div>
+	</div>
+
 	<div class="mastercake-show">
 		<ul class="ch-grid">
 			<li>
@@ -134,8 +164,9 @@
 	<%= link_to 'Edit', edit_mastercake_path(@mastercake) %> |
 	<%= link_to 'Back', mastercakes_path %>
 	</div>
+
 	<div class="reveal-modal-bg" style="display: none"></div>
-	<div id="myModal" class="reveal-modal">
+	<div id="reviewModal" class="reveal-modal">
 		<h1>Review <%= @mastercake.name %></h1>
 		<%= render "ratings/form" %>
 	  <a class="close-reveal-modal">&#215;</a>

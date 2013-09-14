@@ -1,25 +1,24 @@
 <div class="bgpinkpaper">
 	<div class="row">
-		<div class="small-11 small-centered columns">
-			<h1>Cupcake Lover's Unite</h1>
+		<div class="small-10 large-4 small-centered columns carousel">
+			<!-- CAROUSEL -->
+			<ul data-orbit >
+				<li>
+					<%= image_tag image_url("heart.png") %>
+				</li>
+				<li>
+					<%= link_to (image_tag image_url("findstore.png")), map_path %>
+				</li>				
+				<li>
+					<%= link_to (image_tag image_url("recipes.png")), mastercakes_path %>
+				</li>
+			</ul>
 		</div>
-		<div class="large-4 offset-1 small-9 columns">
-		<!-- CAROUSEL -->
-				<ul data-orbit>
-					<li>
-						<%#= image_tag "/assets/cupcakes.png" %>
-					</li>
-					<li>
-						<%#= image_tag "/assets/choccherrycc.png" %>
-					</li>				
-					<li>
-						<%#= image_tag "/assets/chocolatecc.png" %>
-					</li>
-				</ul>
+	</div>
+	<div class="row">
+		<div class="small-5 large-2 small-centered columns">
+			<%= link_to "Sign Up", signup_path, class:"button medium round signup-button" %>
 		</div>
-
-
-			<%= link_to "Sign Up", signup_path, class:"medium button" %>
 	</div>
 </div>
 

@@ -1,0 +1,7 @@
+<% if @mastercake.image.nil? %>
+	alert("Failed to upload cupcake image: <%= j @mastercake.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+	$("#image-frame").append("<div><%= j render 'cake_photo', object: @mastercake %></div>");
+	$('.addphoto').hide();
+	$('form.edit_mastercake').hide();
+<% end %>

@@ -1,4 +1,4 @@
-<%= form_for @mastercake, html: {:multipart => true} do |f| %>
+<%= form_for @mastercake do |f| %>
   <% if @mastercake.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@mastercake.errors.count, "error") %> prohibited this mastercake from being saved:</h2>
@@ -10,27 +10,15 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
+
     <%= f.label :description %><br>
     <%= f.text_area :description %>
-  </div>
-  <div class="field">
+
     <%= f.label :source %><br>
     <%= f.text_field :source %>
-  </div>
-  <div class="field">
-    <label for="mastercake_image" id="mastercake-image-button">
-      Upload Image
-      <%= f.file_field :image %>
-    </label>
-    <%= f.label :remote_image_url, "or image url" %>
-    <%= f.text_field :remote_image_url %>
-  </div>
-  <div class="actions">
+
     <%= f.submit "Ready for Step 2", class: "medium round button"%>
-  </div>
+
 <% end %>

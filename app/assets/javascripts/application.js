@@ -12,12 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require jquery.tokeninput
 //= require chosen-jquery
 //= require foundation
 //= require recipes
+//= require mastercakes
 //= require_tree .
 
 $(document).foundation();
-$('#myModal').foundation('reveal', 'close');
+$('#reviewModal').foundation('reveal', 'close');
+
 

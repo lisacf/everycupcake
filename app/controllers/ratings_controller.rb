@@ -10,6 +10,7 @@ class RatingsController < ApplicationController
 
   def create
   	@rating = @rateable.ratings.new(rating_params)
+    @rating.update_attribute(:user_id, current_user.id)
   	if @rating.save
       @rateable.update_attribute(:average_rating, @rateable.ratings.average(:star))
   		redirect_to @rateable, notice: "Rating created"

@@ -27,13 +27,12 @@ group :test do
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
 end
 
-gem "carrierwave"
-gem "rmagick"
-gem "redcarpet"
-gem "fog"
-gem "carrierwave_direct"
-gem "sidekiq"
-gem "nokogiri"
+gem 'carrierwave'
+gem 'rmagick'
+gem 'redcarpet'
+gem 'fog'
+gem 'jquery-fileupload-rails'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -46,7 +45,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Foundation
 gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
-gem 'zurb-foundation', '~> 4.0.0'
+gem 'zurb-foundation', '4.0.9'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
