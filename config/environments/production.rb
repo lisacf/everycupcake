@@ -28,7 +28,7 @@ Cupcake::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
-  #config.assets.precompile += ['google_maps.css']
+  #config.assets.precompile += ['google_maps.css', 'mastercakes.css.scss', 'stores.css.scss', 'foundation_and_overrides.scss', 'mastercakes.css.scss' ]
 
   # Generate digests for assets URLs.
   config.assets.digest = true
