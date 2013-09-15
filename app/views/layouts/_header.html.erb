@@ -9,10 +9,18 @@
     <section class="top-bar-section">
       <ul class="right">
         <li class="divider hide-from-small"></li>
-        <li><%= link_to "Recipe", mastercakes_path %></li>
-        <li><%= link_to "Map", map_path %></li>
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
+        <li><%= link_to "Recipe", mastercakes_path %></li>
+
+        <li class="has-dropdown">
+          <a href="#">
+            Stores
+          </a>
+          <ul class="dropdown">
+            <li><%= link_to "Stores", stores_path %></li>
+            <li><%= link_to "Map", map_path %></li>
+          </ul>
+        </li>
         <% if signed_in? %>    
           <li><%= link_to "Users", users_path %></li>
           <li class="has-dropdown"><a href="#">

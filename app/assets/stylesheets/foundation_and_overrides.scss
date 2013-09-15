@@ -1115,6 +1115,9 @@ $topbar-menu-icon-color-toggled: #663fbc;
 .users {
 	list-style: none;
 	margin: 0;
+	h1 {
+		text-align:center;
+	}
 	li {
 		overflow: auto;
 		padding: 10px 0;
@@ -1435,6 +1438,9 @@ a.chosen-single {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+#mother {
+	display:none;
+}
 /* FORMATS FOR LARGER SCREENS */
 @media only screen and (min-width: 768px) {
 	a.chosen-single {
@@ -1451,6 +1457,47 @@ a.chosen-single {
 	}
 	.ingredient-label2 {
 		margin-bottom: .5em;
+	}
+	#store-banner {
+    height: 440px;
+    position: relative;
+    overflow: hidden;
+	}
+	#store-banner > div {
+	    height: 445px;
+	    width: 2526px;
+	    background-image: image_url("storessm.png");
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: 100%;
+	    
+	    -moz-transition:  opacity 0.5s ease-out; 
+	    -o-transition: opacity 0.5s ease-out; 
+	  	-webkit-transition: opacity 0.5s ease-out; 
+	    -ms-transition: opacity 0.5s ease-out; 
+
+	    -webkit-animation: moveSlideshow 60s linear infinite;
+	    -moz-animation:    moveSlideshow 60s linear infinite;
+	    
+		}
+
+	@-webkit-keyframes moveSlideshow {
+	    0% { left: 0; }
+	    100% { left: -990px; }
+	}
+	@-moz-keyframes moveSlideshow {
+	    0% { left: 0; }
+	    100% { left: -990px; }
+	}
+
+}
+@media only screen and (min-width: 1000px) {
+		#mother {
+		position:relative;
+		display: inline-block;
+		float:left;
+		top: -100px;
 	}
 }
 

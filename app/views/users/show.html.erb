@@ -1,15 +1,17 @@
 <% provide :title, @user.name %>
 <div class="bgaquapaper">
-	<div class="row main">
-		<div class="large-5 columns">
+	<div class="row">
+		<div class="large-5 large-offset-1 columns">
 			<h1>
 				<%= gravatar_for @user %>
 			  <%= @user.screen_name %>
 			</h1>
 			<h2> Name: <%= @user.name %> </h2>
-			<%= link_to "Add A Recipe", new_mastercake_path, class: "button medium round" %>
+			<% if @user == current_user %>
+				<%= link_to "Add A Recipe", new_mastercake_path, class: "button medium round" %>
+			<% end %>
 		</div>
-		<div class="large-6 offset-6 columns">
+		<div class="large-6 columns">
 			<% if @user.mastercakes.any? %>
 			<h3><%= pluralize @user.mastercakes.count, "Cupcake" %></h3>
 				<%= render @mastercakes %>

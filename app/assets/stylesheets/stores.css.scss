@@ -1,0 +1,53 @@
+// Place all the styles related to the Stores controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.family {
+	position:absolute;
+	width: 100%;
+	z-index:2;
+	top: -265px;
+	#girl {
+		position:relative;
+		display: inline-block;
+		float: left;
+		top: 50px;
+	}
+	#father {
+		position:relative;
+		display: inline-block;
+		top:-130px;
+		float:left;
+	}
+
+}
+	#store-banner {
+    height: 440px;
+    position: relative;
+    overflow: hidden;
+	}
+	#store-banner > div {
+	    height: 445px;
+	    width: 2526px;
+	    background: image_url("storessm.png");
+	    background-position: 44% 65%;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: 100%;
+	    
+		}
+
+.store-title {
+	background: #757778;
+	text-align: center;
+	padding: 1em;
+	z-index: 10;
+	a {
+		color: #fff;
+		font-size: 2em;
+	}
+	a:hover {
+		color:#ff85ff;
+	}
+}

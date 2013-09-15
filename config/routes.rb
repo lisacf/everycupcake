@@ -1,8 +1,9 @@
 Cupcake::Application.routes.draw do
-  get "signed_urls/index"
+  resources :stores do
+    resources :ratings
+  end
   resources :mastercakes do
     resources :ratings
-    resources :reviews
   end
   resources :units
   resources :measures
