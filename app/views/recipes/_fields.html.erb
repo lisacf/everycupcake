@@ -1,0 +1,9 @@
+
+<%= f.fields_for :proportions do |builder| %>
+  <%= render 'ingredient_fields', f: builder %>
+<% end %>
+<%= link_to_add_fields "Add Ingredient", f, :proportions, :ingredients, "add_fields medium button round" %>
+<%= f.fields_for :instructions do |builder| %>
+  <%= render 'instruction_fields', f: builder %>
+<% end %>
+<%= link_to_add_fields "Add Instructions", f, :instructions, :instructions, "add_instructions medium button round" %>

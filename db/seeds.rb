@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.create!(name: ENV["NAME"], email:"lisa@test.com", screen_name: "truth", admin: true, password: "foobar", password_confirmation:"foobar")
+User.create!(name: "tony", email:"tony@test.com", screen_name: "Tester", admin: true, password: "foobar", password_confirmation:"foobar")
 
 ingredients_list = %w(agave\ nectar
 									all-purpose\ flour

@@ -1,29 +1,36 @@
 <% provide :title, @recipe.name %>
-<p>
-  <h1><%= @recipe.name %></h1>
-</p>
-<%#= image_tag @recipe.image_url(:thumb).to_s %>
-<h2> Ingredients: </h2>
-<ul>
-<% @recipe.proportions.each do |item| %>
-<li>
-	<% if item.unit %>
-  	<%= item.unit.name %>
-  <% end %>
-  <%= item.measure.name %>
-  <%= item.ingredient.name %>
-</li>
-<% end %>
-</ul>
-<h2> Instructions: </h2>
-<ul>
-  <% @recipe.instructions.each do |instruction| %>
-    <li>Preheat oven to <%= instruction.preheat%> °F</li>
-    <li>Bake for <%= instruction.baketime %> minutes </li>
-    <li>Bake Temperature <%= instruction.baketemp%> °F</li>
-    <li><%= instruction.content %> </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="small-11 small-offset-1 large-6, large-offset-1 columns">
+    <h1><%= @recipe.name %> <%= @recipe.cupcake_part %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="small-11 small-offset-1 large-6, large-offset-1 columns">
+    <fieldset>
+      <h2> Ingredients: </h2>
+      <ul>
+      <% @recipe.proportions.each do |item| %>
+      <li>
+      	<% if item.unit %>
+        	<%= item.unit.name %>
+        <% end %>
+        <%= item.measure.name %>
+        <%= item.ingredient.name %>
+      </li>
+      <% end %>
+      </ul>
+      <h2> Instructions: </h2>
+      <ul>
+        <% @recipe.instructions.each do |instruction| %>
+          <li>Preheat oven to <%= instruction.preheat%> °F</li>
+          <li>Bake for <%= instruction.baketime %> minutes </li>
+          <li>Bake Temperature <%= instruction.baketemp%> °F</li>
+          <li><%= instruction.content %> </li>
+        <% end %>
+      </ul>
+    </fieldset>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

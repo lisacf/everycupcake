@@ -1,16 +1,24 @@
-<% provide :title, 'Edit Recipe' %>
-<h1>Update <%= @recipe.name %></h1>
-	<%= form_for @recipe do |f| %>
-<div class="form">
-		<div class="row">
-			<div class="large-6 large-offset-3 columns">
-				<%= render 'shared/error_messages', object: f.object %>
-				<%= f.label :name %>
-				<%= f.text_field :name %>
-				<%= render 'form', object: f.object %>
-	<% end %>
-		<%= link_to 'Show', @recipe %> |
-		<%= link_to 'Back', recipes_path %>
-		</div>
-	</div>
+<%= provide :title, "Recipe Changer" %>
+<div class="row">
+  <div class="large-7 large-offset-1 small-10 small-offset-1 columns">
+    <div class="non-semantic-protector">
+      <div class="ribbon">
+        <span class="ribbon-content">Change <%= @recipe.name %></span>
+      </div>
+    </div>
+  </div>
 </div>
+  <%= form_for @recipe do |f| %>
+  <%= render 'shared/error_messages', object: @recipe %>
+<div class="row">
+  <div class="large-7 large-offset-1 small-10 small-offset-1 columns">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </div>
+</div>
+  <%= render 'fields', f: f, object: @recipe %>
+  <%= f.hidden_field :mastercake_id, value: @recipe.mastercakes[0].id %>
+  <%= f.submit "Update Recipe", class: "medium button" %>
+  <% end %>
+
+

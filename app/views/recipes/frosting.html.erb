@@ -8,6 +8,7 @@
       <%= f.label :name, "Frosting Name" %>
       <%= f.text_field :name %>
       <%= f.hidden_field :cupcake_part, value: "frosting" %>
+      <%= f.hidden_field :mastercake_ids, value: params["mastercake_id"] %>
       <%= render "form", :object => @recipe %>
     <% end %>
 	</div>

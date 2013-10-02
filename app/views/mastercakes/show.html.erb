@@ -1,108 +1,106 @@
 <%= provide :title, @mastercake.name %>
-
-<div class="row"><!-- CAKE TITLE -->
-	<div class="large-8 small-12 columns recipe-name">
-		<div class="non-semantic-protector">
-			<div class="ribbon">
-				<span class="ribbon-content"><%= @mastercake.name %></span>
+<div class="hrecipe">
+	<div class="row"><!-- CAKE TITLE -->
+		<div class="large-8 small-12 columns recipe-name">
+			<div class="non-semantic-protector">
+				<div class="ribbon">
+					<span class="item fn ribbon-content"><%= @mastercake.name %></span>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="large-3 large-offset-1 small-12 columns">
-		<br>
-		<br>
-		<% if current_user && !@mastercake.ratings.pluck(:user_id).include?(current_user.id) && @mastercake.user_id != current_user.id %>
-		<a href="#" data-reveal-id="reviewModal" class="cake-review-button">Review Recipe</a>
-		<% else %>
-			<% if current_user.nil? %>
-				<%= link_to "Sign in to Review", signin_path %>
-			<% end %>
-		<% end %>
-	</div>
-</div><!-- Recipe Title Ribbon TOP ROW LARGE -->
-	<div class="row">
-		<div class="small-6 small-centered columns">
-			
-		</div>
-	</div><!-- End modal rating link -->
-	<div class="row">
-		<div class="large-3 columns">
-			<div class="mastercakes">
-			    <% if @mastercake.image? %>
-			    	<div class="mastercake">
-			      <%= image_tag @mastercake.image_url.to_s, :alt => @mastercake.name, 
-			                                        :title => @mastercake.description %>
-			      </div>
-			    <% else %>
-			    	<% if current_user == @mastercake.user %>
-			    		<%= render "photo", object: @mastercake %>
-			    			<div id="image-frame"><div class="addphoto"><%= image_tag image_url('addphoto.png') %></div></div>
-			    	<% else %>
-			    	  <%= image_tag image_url("placeholderimage.png"), :alt => "photo placeholder", :title => "Wanted Cupcake Photo" %>
-			    	<% end %>
-			    <% end %>
-			  <br>
-			  <div class= "rating-bar">
-			    <%= render_stars(@mastercake.average_rating) %>
-			  </div>
-			  <div class="rating-number">
-			    <small><%= pluralize @mastercake.ratings.size, 'rating' %></small>
-			  </div>
-			</div><!-- /end #mastercakes -->
-		</div><!-- /end of mastercake image view polaroid -->
-		<div class="large-5 columns">
-			<div class="cake-info"> 
-					<%= markdown(@mastercake.description) %>
-					<p>
-					 <b>Source: </b><%= @mastercake.source %>
-					</p>
-			</div>
-		</div>
-		<div class="large-4 columns">
-			<h3 class="review-title">REVIEWS</h3>
-			<% for rating in @mastercake.ratings %>
-				<fieldset class="review-block">
-						<div class="rating-bar">
-						<%= render_stars(rating.star) %>
-						</div>
-						<div class="review-text">
-						<%= rating.review %>
-						</div>
-						<div class="review-author">
-						Cupcake Aficionado: <%= rating.user.name if rating.user %>
-						</div>
-				</fieldset>
+		<div class="large-3 large-offset-1 small-12 columns">
+			<br>
+			<br>
+			<% if current_user && !@mastercake.ratings.pluck(:user_id).include?(current_user.id) && @mastercake.user_id != current_user.id %>
+			<a href="#" data-reveal-id="reviewModal" class="cake-review-button">Review Recipe</a>
+			<% else %>
+				<% if current_user.nil? %>
+					<%= link_to "Sign in to Review", signin_path %>
+				<% end %>
 			<% end %>
 		</div>
-	</div><!-- end of mastercake info section -->
-	<% if @cake_recipes.count >= 1 %>
-		<% @cake_recipes.each do |cake| %>
-			<%= render "recipe", object: cake %>
-		<% end %>
-	<% end %>
-	<% if @filling_recipes.count >= 1 %>
-				<% @filling_recipes.each do |filling| %>
-					<%= render "recipe", object: filling %>
-				<% end %>
-	<% end %>
-	<% if @frosting_recipes.count >= 1 %>
-				<% @frosting_recipes.each do |frosting| %>
-					<%= render "recipe", object: frosting %>
-				<% end %>
-	<% end %>
-
-
-
-
-<% if !current_user.nil? and @mastercake.user_id == current_user.id and @mastercake.complete == false %>
-	<div class="row">
-		<div class="large-4 large-offset-2 columns">
-			<div class="recipe-choices">Click Image to Build Recipe
+	</div><!-- Recipe Title Ribbon TOP ROW LARGE -->
+		<div class="row">
+			<div class="small-6 small-centered columns">
+				
 			</div>
+		</div><!-- End modal rating link -->
+		<div class="row">
+			<div class="large-3 columns">
+				<div class="mastercakes">
+				    <% if @mastercake.image? %>
+				    	<div class="mastercake">
+				      <%= image_tag @mastercake.image.url(:thumb), :alt => @mastercake.name, 
+				                                        :title => @mastercake.description, class: "photo" %>
+				      </div>
+				    <% else %>
+								<%= image_tag image_url("placeholderimage.png"), :alt => "photo placeholder", :title => "Wanted Cupcake Photo",
+								class: "photo" %>
+				    <% end %>
+				  <br>
+				  <span class="review hreview-aggregate">
+				  <div class= "rating-bar rating">
+				    <%= render_stars(@mastercake.average_rating) %>
+				  </div>
+				  <div class="rating-number rating">
+				    <small><span class="average"><%= pluralize @mastercake.average_rating, 'star ' %>based on</span><span class="count"> <%= pluralize @mastercake.ratings.size, 'review' %></span></small>
+				  </div>
+				  </span>
+				</div><!-- /end #mastercakes -->
+			</div><!-- /end of mastercake image view polaroid -->
+			<div class="large-5 columns">
+				<div class="cake-info"> 
+						<span class="summary"><%= markdown(@mastercake.description) %></span>
+						<p>
+						 <b>Source: </b><%= @mastercake.source %>
+						</p>
+						<div class="row">
+							<div class= "large-1 columns ">
+								<% if @mastercake.user == current_user %>
+									<%= link_to 'Edit', edit_mastercake_path(@mastercake) %>
+								<% end %>
+							</div>
+						</div>
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<h3 class="review-title">REVIEWS</h3>
+				<% for rating in @mastercake.ratings %>
+					<fieldset class="review-block">
+							<div class="rating-bar">
+							<%= render_stars(rating.star) %>
+							</div>
+							<div class="review-text">
+							<%= rating.review %>
+							</div>
+							<div class="review-author">
+							Cupcake Aficionado: <%= rating.user.name if rating.user %>
+							</div>
+					</fieldset>
+				<% end %>
+			</div>
+		</div><!-- end of mastercake info section -->
+		<% if @cake_recipes.count >= 1 %>
+			<% @cake_recipes.each do |cake| %>
+				<%= render "recipe", object: cake %>
+			<% end %>
+		<% end %>
+		<% if @filling_recipes.count >= 1 %>
+					<% @filling_recipes.each do |filling| %>
+						<%= render "recipe", object: filling %>
+					<% end %>
+		<% end %>
+		<% if @frosting_recipes.count >= 1 %>
+					<% @frosting_recipes.each do |frosting| %>
+						<%= render "recipe", object: frosting %>
+					<% end %>
+		<% end %>
+</div><!-- end of Microformat recipe hrecipe markup -->
+<% if !current_user.nil? and @mastercake.user_id == current_user.id %>
+	<div>
+		<div class="recipe-choices">
+			<h3>Click Image to Build Recipe</h3>
 		</div>
-	</div>
-
-	<div class="mastercake-show">
 		<ul class="ch-grid">
 			<li>
 				<div class="ch-item ch-img-1">
@@ -161,8 +159,7 @@
 		    <%#= f.submit "Add Existing Recipe", class: "medium button round" %>
 		  <% end %>
 
-	<%= link_to 'Edit', edit_mastercake_path(@mastercake) %> |
-	<%= link_to 'Back', mastercakes_path %>
+				<%= link_to 'View All Cupcakes', mastercakes_path %>
 	</div>
 
 	<div class="reveal-modal-bg" style="display: none"></div>

@@ -6,16 +6,16 @@
 				<%= gravatar_for @user %>
 			  <%= @user.screen_name %>
 			</h1>
-			<h2> Name: <%= @user.name %> </h2>
+			<h3> Name: <%= @user.name %> </h3>
 			<% if @user == current_user %>
-				<%= link_to "Add A Recipe", new_mastercake_path, class: "button medium round" %>
+				<%= link_to "Add Cupcake Recipe", new_mastercake_path%> | <%= link_to "Find a Cupcake Shop", map_path %>
 			<% end %>
 		</div>
 		<div class="large-6 columns">
 			<% if @user.mastercakes.any? %>
 			<h3><%= pluralize @user.mastercakes.count, "Cupcake" %></h3>
-				<%= render @mastercakes %>
 				<%= will_paginate @mastercakes%>
+				<%= render @mastercakes %>
 			<% end %>
 		</div>
 	</div>

@@ -1,16 +1,6 @@
 // Place all the styles related to the mastercakes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.mastercake-show{
-	font-family: Cambria, Georgia, serif;
-	background: #9deeeb;
-	font-weight: 300;
-	font-size: 15px;
-	color: #333;
-	-webkit-font-smoothing: antialiased;
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
 .ch-grid a{
 	color: #fff;
 	text-decoration: none;
@@ -23,7 +13,7 @@
 }
 
 .ch-grid {
-    margin: 0.5em 0 0 0;
+    margin: 0.25em 0 0 0;
     padding: 0;
     list-style: none;
     display: block;
@@ -45,7 +35,7 @@
     width: 220px;
     height: 220px;
     display: inline-block;
-    margin: 2% 2%;
+    margin: 1% 1%;
 }
 
 .ch-item {
@@ -170,3 +160,55 @@
 	-ms-transform: rotate3d(0,1,0,-180deg);
 	transform: rotate3d(0,1,0,-180deg);
 }
+
+.upload {
+  border-top: solid 1px #CCC;
+  width: 400px;
+  padding-top: 10px;
+  margin-top: 10px;
+
+  .progress {
+    margin-top: 8px;
+    border: solid 1px #555;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      height: 10px;
+      background: #3EC144;
+    }
+  }
+}
+
+/* MASTERCAKE INDEX VIEW */
+.mastercakes {
+	border: ridge 0.25em #CCC;
+	padding: 0.25em 0.25em;
+	width:100%;
+	background: #FFF;
+	a img {
+		width:100%;
+	}
+}
+.mastercake {
+	border: solid 0.1em #CCC;
+	padding: 0.25em 0.25em;
+	width:100%;
+	background: #FFF;
+	img.photo {
+		width:100%;
+	}
+}
+.mastercake-name {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+	height:40px;
+	font-weight: bold;
+}
+
+.mastercake .actions {
+	font-size: 10px;
+	text-align: center;
+	color: #777;
+}
+

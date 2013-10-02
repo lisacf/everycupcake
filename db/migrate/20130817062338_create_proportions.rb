@@ -5,7 +5,6 @@ class CreateProportions < ActiveRecord::Migration
       t.integer :ingredient_id
       t.integer :measure_id
       t.integer :unit_id
-      t.string :amount
       t.belongs_to :recipe, index: true
       t.belongs_to :ingredient, index: true
       t.belongs_to :measure, index: true

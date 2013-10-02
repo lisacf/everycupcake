@@ -3,6 +3,8 @@ class MastercakesController < ApplicationController
 
   def index
     @mastercakes = Mastercake.all
+    # @uploader = Mastercake.new.image
+    # @uploader.success_action_redirect = new_mastercake_url
   end
 
   def show
@@ -16,35 +18,43 @@ class MastercakesController < ApplicationController
 
   def new
     @mastercake = Mastercake.new
+    # @mastercake = Mastercake.new(key: params[:key])
   end
 
   def edit
   end
 
   def create
-    @mastercake = Mastercake.create(mastercake_params)
-    @mastercake.update_attribute(:user_id, current_user.id)
-
+    # if params[:mastercake][:image_url]
+    #   @image_url = params[:mastercake][:image_url]
+    #   @current_cake_id = request.referer.split("/").last
+    #   @mastercake= Mastercake.find(@current_cake_id)
+    #   @mastercake.update_attribute(:image_url, @image_url)
+    # else
+      @mastercake = Mastercake.new(mastercake_params)
+      @mastercake.update_attribute(:user_id, current_user.id)
+    # end
     respond_to do |format|
       if @mastercake.save
-        format.html { redirect_to @mastercake, notice: 'Mastercake was successfully created.' }
+        format.html { redirect_to @mastercake, notice: 'Cupcake was successfully created.' }
         format.json { render action: 'show', status: :created, location: @mastercake }
       else
         format.html { render action: 'new' }
         format.json { render json: @mastercake.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
   def update
     respond_to do |format|
       if @mastercake.update(mastercake_params)
-        format.html { redirect_to @mastercake, notice: 'Mastercake was successfully updated.' }
+        format.html { redirect_to @mastercake, notice: 'Cupcake recipe was successfully updated.' }
         format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.js
+        format.js 
         format.json { render json: @mastercake.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +74,7 @@ class MastercakesController < ApplicationController
     end
 
     def mastercake_params
-      params.require(:mastercake).permit(:name, :description, :source, :image, :remote_image_url,
+      params.require(:mastercake).permit(:name, :description, :source, :image_url, :image, :remote_image_url, :key,
                                          :recipe_ids, :user_id, :average_rating, :complete)
     end
 end

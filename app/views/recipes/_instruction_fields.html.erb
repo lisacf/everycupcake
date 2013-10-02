@@ -1,28 +1,31 @@
-<fieldset>
-  <% if @cupcake_part == "cake" %>
-  <div class="row">
-    <div class="large-6 small-10 columns">
-          <%= f.label :baketemp, "Bake Temperature: "%>
-          <div class="baketemp"><p></p>°F</div> 
-          <%= f.range_field :baketemp, min: 250, max: 500, placeholder:"250 to 500°F", id:"baketemp", step: 5%>
-    </div>
+<div class= "row">
+  <div class="large-7 large-offset-1 small-10 small-offset-1 columns">
+    <fieldset>
+      <% if @cupcake_part == "cake" %>
+      <div class="row">
+        <div class="large-6 small-10 columns">
+
+              <%= f.label :baketemp, "Bake Temperature: "%>
+              <div class="baketemp"><p></p>°F</div> 
+              <%= f.range_field :baketemp, min: 250, max: 500, placeholder:"250 to 500°F", id:"baketemp", step: 5%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 small-10 columns">
+            <%= f.label :baketime, "Bake Time: "%>  
+            <div class="baketime"><p></p>minutes</div>
+            <%= f.range_field :baketime, min: 1, max: 45, step: 1, id: "baketime", placeholder: "enter minutes"%>
+        </div>
+      </div>
+      <% end %>
+      <div class="large-6 columns">
+      <%= f.label :preptime, "Prep Time: "%>
+      <div class="preptime"><p></p>minutes</div>
+      <%= f.range_field :preptime, min: 1, max: 300, step: 5, placeholder: "enter minutes", id:"preptime" %>
+      <div id="prep-time"></div>
+
+      <%= f.label :content, "Step by Step Instructions"%>
+      <%= f.text_area :content %>
+    </fieldset>
   </div>
-  <div class="row">
-    <div class="large-6 small-10 columns">
-        <%= f.label :baketime, "Bake Time: "%>  
-        <div class="baketime"><p></p>minutes</div>
-        <%= f.range_field :baketime, min: 1, max: 45, step: 1, id: "baketime", placeholder: "enter minutes"%>
-        <% end %>
-       
-    </div>
-  </div>
-
-  <%= f.label :preptime, "Prep Time: "%>
-  <div class="preptime"><p></p>minutes</div>
-  <%= f.range_field :preptime, min: 1, max: 300, step: 5, placeholder: "enter minutes", id:"preptime" %>
-  <div id="prep-time"></div>
-
-  <%= f.label :content, "Step by Step Instructions"%>
-  <%= f.text_area :content %>
-
-</fieldset>
+</div>

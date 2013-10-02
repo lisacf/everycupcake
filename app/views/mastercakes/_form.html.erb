@@ -10,15 +10,16 @@
       </ul>
     </div>
   <% end %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-
-    <%= f.label :source %><br>
-    <%= f.text_field :source %>
-
+    <%= render 'fields', f: f %>
+    <div class="row">
+      <div class="large-6 small-10 columns">    
+      <%= f.label :image, "Photo of Cupcake" %>
+      <%= f.file_field :image %>
+      </div>
+    </div>
+    <hr>
+    <%#= f.hidden_field :key %>
+    <%#= @mastercake.image_name %>
+    
     <%= f.submit "Ready for Step 2", class: "medium round button"%>
-
 <% end %>

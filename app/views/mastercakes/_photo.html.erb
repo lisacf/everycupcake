@@ -1,4 +1,8 @@
-<%= form_for object, method: 'patch' do |f| %>
-	<%= f.file_field :image %>
-	<%= f.submit class: 'update-photo', value: "update photo" %>
-<% end %>
+<%#= direct_upload_form_for @uploader do |f| %>
+	<%#= f.file_field :image_url %>
+	<%#= f.submit value: "update photo" %>
+
+<%#= s3_uploader_form post: mastercakes_url(:js), as: "mastercake[image_url]" do %>
+	<%#= file_field_tag :file, multiple: true %>
+<%= image_tag image_url("placeholderimage.png"), :alt => "photo placeholder", :title => "Wanted Cupcake Photo" %>
+

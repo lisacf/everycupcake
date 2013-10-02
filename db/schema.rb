@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20130914180406) do
 
   create_table "instructions", force: true do |t|
     t.text     "content"
-    t.integer  "preheat"
     t.integer  "baketemp"
     t.integer  "baketime"
     t.integer  "preptime"
@@ -72,7 +71,6 @@ ActiveRecord::Schema.define(version: 20130914180406) do
     t.integer  "ingredient_id"
     t.integer  "measure_id"
     t.integer  "unit_id"
-    t.string   "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,16 +1,23 @@
-<div class="purplebg-paper">
-  <div class=row>
-    <div class="large-3">
-      <%#= @recipe.mastercake.name %>
+<%= provide :title, "Cake Recipe Builder" %>
+  <div class="row">
+    <div class="large-7 large-offset-1 small-10 small-offset-1 columns">
+      <div class="non-semantic-protector">
+        <div class="ribbon">
+          <span class="ribbon-content">Cake Component</span>
+        </div>
+      </div>
+      <br>
     </div>
-  	<div class="large-9 offset-3 columns">
-  		<h1>Cake Recipe Builder</h1>
-  		<%= form_for @recipe do |f| %>
-        <%= f.label :name, "Cake Name" %>
-        <%= f.text_field :name %>
-        <%= f.hidden_field :cupcake_part, value: "cake" %>
-        <%= render "form", :object => @recipe %>
-      <% end %>
-  	</div>
   </div>
-</div>
+<%= form_for @recipe do |f| %>
+  <div class="row">
+    <div class="large-7 large-off-set-1 small-10 small-offset-1 columns">
+      <%= f.label :name, "Cake Recipe Name" %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <%= f.hidden_field :cupcake_part, value: "cake" %>
+  <%= f.hidden_field :mastercake_ids, value: params["mastercake_id"] %>
+  <%= render "form", :object => @recipe %>
+<% end %>
+

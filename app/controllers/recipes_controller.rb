@@ -25,6 +25,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @cupcake_part = @recipe.cupcake_part
   end
 
   def create
@@ -45,7 +46,7 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
+        format.html { redirect_to mastercake_path(@recipe.mastercakes[0]), notice: 'Recipe was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

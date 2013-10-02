@@ -1,16 +1,13 @@
 <div class="fixed">
   <nav class="top-bar">
     <ul class="title-area">
-      <li class="name">
-      <h1><%= link_to "Cupcake", root_path, id: "logo" %></h1>
-      </li>
+      <li class="name"><%= image_tag image_url("cupcake30.png") %><%= link_to "Every Cupcake", root_path, id: "logo" %></li>
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
     <section class="top-bar-section">
       <ul class="right">
         <li class="divider hide-from-small"></li>
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Recipe", mastercakes_path %></li>
+        <li><%= link_to "Recipes", mastercakes_path %></li>
 
         <li class="has-dropdown">
           <a href="#">

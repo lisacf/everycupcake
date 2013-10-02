@@ -25,13 +25,12 @@ module UploadHelper
     def form_options
       {
         id: @options[:id],
-        method: "post",
         authenticity_token: false,
-        multipart: true,
         data: {
           post: @options[:post],
           as: @options[:as]
-        }
+        },
+        method: 'post'
       }
     end
 

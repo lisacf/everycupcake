@@ -1,7 +1,17 @@
-<h1>Editing mastercake</h1>
-
-<%= render 'form' %>
-<%#= render "image", object: f.object %>
+<div class="row">
+	<div class="small-11 small-centered large-6 large-centered columns">
+		<h1><%= @mastercake.name %></h1>
+	</div>
+</div>
+	<%= form_for @mastercake do |f| %>
+		<div class="row">
+			<div class="large-6 large-offset-3 columns">
+				<%= render 'fields', f: f %>
+				<%= f.submit "Save changes", class: "button round" %>
+	<% end %>
+			</div>
+		</div>
+		
 
 <%= link_to 'Show', @mastercake %> |
 <%= link_to 'Back', mastercakes_path %>

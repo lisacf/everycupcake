@@ -15,7 +15,9 @@
           <h3>Ingredients:</h3>
             <ul class = "recipe">
               <% object.proportions.each do |item| %>
+                <span class="ingredient">
                 <li>
+                  <span class="amount">
                 	<% if item.unit %>
                   	<%= item.unit.name %>
                   <% end %>
@@ -23,32 +25,35 @@
                   <% else %>
                   <%= item.measure.name %>
                   <% end %>
-                  <%= item.ingredient.name %>
+                  </span>
+                  <span class="name"><%= item.ingredient.name %></span>
                 </li>
+                </span>
               <% end %>
             </ul>
+            <% if current_user == object.user %>
+              <%= link_to 'Edit', edit_recipe_path(object) %>
+            <% end %>
           </div>
           <div class="large-6 columns">
             <h3> Instructions: </h3>
             <ul class="bake-instructions">
               <% object.instructions.each do |instruction| %>
-                <% if instruction.preheat %>
-                <li>Preheat oven to <%= instruction.preheat%> °F</li>
-                <% end %>
                 <% if instruction.baketime %>
-                <li>Bake for <b><%= instruction.baketime %></b> minutes </li>
+                <li>Bake for <span class="cooktime"><b><%= instruction.baketime %></b> minutes
+                <span class="value-title" title=<%= "PT#{instruction.baketime}M"%>></span></span></li>
                 <% end %>
                 <% if instruction.baketemp %>
                 <li>Oven Temperature: <%= instruction.baketemp%> °F</li>
                 <% end %>
                 <br>
-                <li><%= markdown(instruction.content) %> </li>
+                <li><span class="instructions"><%= markdown(instruction.content) %></span></li>
               <% end %>
               </ul>
+
             </div>
           </div>
       </div>
-  </div>
 
-      <%= link_to 'Edit', edit_recipe_path(object) %>
+  </div>
 </div>

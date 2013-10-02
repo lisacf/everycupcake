@@ -28,10 +28,14 @@ group :test do
 end
 
 gem 'carrierwave'
+# gem 'paperclip'
+gem 'aws-sdk'
 gem 'rmagick'
 gem 'redcarpet'
 gem 'fog'
 gem 'jquery-fileupload-rails'
+# gem 'carrierwave_direct'
+# gem 'sidekiq'
 
 
 # Use SCSS for stylesheets

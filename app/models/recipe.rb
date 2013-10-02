@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
   has_many :mastercakes, through: :cakecombos
   has_many :proportions
   has_many :ingredients, through: :proportions
+  has_many :measures, through: :proportions
   has_many :instructions
   has_many :cakecombos
 

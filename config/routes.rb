@@ -1,4 +1,5 @@
 Cupcake::Application.routes.draw do
+  resources :signed_url, only: :index
   resources :stores do
     resources :ratings
   end
